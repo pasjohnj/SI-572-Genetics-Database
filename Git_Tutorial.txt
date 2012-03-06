@@ -1,0 +1,19 @@
+# Git Commands
+
+mv SI-572-Genetics-Database/ ~/Documents/SI-572-Genetics-Database
+git status
+# make changes to document using text editor
+git status
+git add -p
+git commit -m "Description of what was changed"
+# so that we don't have to 'push' and 'pull' to origin master every time:
+git branch --set-upstream master origin/master
+git push origin master
+git pull #if it complains
+
+# If 'git pull' doesn't work
+git fetch
+git merge origin/master
+git push origin master
+
+git@github.com:ZestyBeef/SI-572-Genetics-Database.git
