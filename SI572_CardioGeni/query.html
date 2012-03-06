@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href = "style.css" media= "screen" rel="stylesheet" />
+<script language="JavaScript" type="text/javascript" src="ahahLib.js"></script> <script language="JavaScript" type="text/javascript"> function makeactive(tab) { document.getElementById("tab1").className = ""; document.getElementById("tab2").className = ""; document.getElementById("tab3").className = ""; document.getElementById("tab"+tab).className = "active"; callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+'. Wait...', 'Error'); } </script>
+
+
+<title>CardioGeni</title>
+</head>
+
+<body>
+<div class="main">
+	<div class="page">
+	<div class="g918">
+	<div class="top">
+	<div id ="name"></div>
+	<h1> CardioGeniDB</h1>
+	<div id="navcontainer">
+	<ul id="navlist">
+	<li id ="active"> <a href="#">Upload </a></li>
+	<li> <a href="#">Query </a></li>
+	</ul>
+	</div>
+	</div>
+	</div>
+	
+	<div class ="content">
+	<div class = "g306">
+	<p><span>Query!</span>  Enter your data information on the form.</p>
+	<p><span>Need help?</span> Try something else...</p>
+	<div class="clear">&nbsp;</div>
+	</div>
+	
+	<div class ="g612">
+	<p>Field 1: <input type="text" name=""></p>
+	<p>Field 2: <input type="text" name=""></p>
+	<p>Field 3: <input type="text" name=""></p>
+	<p>Field 4: <input type="text" name=""></p>
+	<input type="submit" name="">
+	<div class="clear">&nbsp;</div>
+	</div>
+	<div class="g918">
+	<div id="line"></div>
+	<p> <ul>
+	<li>John</li>
+	<li>Amelia</li>
+	<li>Ellen</li>
+	<li>Kelly</li>
+	</p>
+	</div>	
+	<ul id="tabmenu" > 
+	<li onclick="makeactive(1)">
+	<a class="" id="tab1">First Page</a>
+	</li> <li onclick="makeactive(2)">
+	<a href="query.html" class="" id="tab2">Second Page</a></li> 
+	<li onclick="makeactive(3)"><a class="" id="tab3">Third Page</a>
+	</li> 
+	</ul> <div id="content"></div>
+
+
+	<div class="clear">&nbsp;</div>
+	
+
+	</div>
+	
+	
+	</div> <!-- end page content -->
+
+			
+</div >
+
+</body>
+
+</html>
