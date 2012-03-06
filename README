@@ -34,6 +34,21 @@ stderr FLOAT,
 pvalue FLOAT
 );
 
+CREATE TABLE Publications (
+PMID INTEGER,
+First_author VARCHAR(128),
+journal VARCHAR(128),
+pub_year INTEGER,
+title VARCHAR(5000)
+);
+
+INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
+  VALUES (20935630, 'Speliotes EK', 'Nature Genetics', 2010, 'Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index');
+INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
+  VALUES (21873549, 'Strawbridge RJ' , 'Diabetes', 2011, 'Genome-wide association identifies nine common variants associated with fasting proinsulin levels and provides new insights into the pathophysiology of type 2 diabetes');
+INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
+  VALUES (21909115, 'Ehret GB', 'Nature', 2011, 'Genetic Variants in Novel Pathways Influence Blood Pressure and Cardiovascular Disease Risk');
+
 \q
 
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by=" " --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/BMI.txt
