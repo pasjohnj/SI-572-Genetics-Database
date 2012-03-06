@@ -1,1 +1,57 @@
-My code
+# Procedure for importing publicly available GWAS data into mySQL database
+
+/Applications/XAMPP/xamppfiles/bin/mysql -uroot
+DROP database project;
+CREATE DATABASE project;
+USE project; 
+GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
+GRANT ALL ON project.* TO 'CardioGeni'@'127.0.0.1' IDENTIFIED BY 'zap';
+
+CREATE TABLE BMI (
+MarkerName VARCHAR(128),
+Allele1 VARCHAR(128),
+Allele2 VARCHAR(128),
+Freq_Allele1_HapMapCEU FLOAT,
+p FLOAT,
+N INTEGER
+);
+
+CREATE TABLE ICBP (
+rsid VARCHAR(128),
+chr_hg18 INTEGER,
+pos_hg18 INTEGER,
+pval_GC_SBP FLOAT,
+pval_GC_DBP FLOAT
+);
+
+CREATE TABLE MAGIC_FastingGlucose (
+SNP VARCHAR(128),
+effect_allele VARCHAR(128),
+other_allele VARCHAR(128),
+maf FLOAT,
+effect FLOAT,
+stderr FLOAT,
+pvalue FLOAT
+);
+
+\q
+
+/Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by=" " --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/BMI.txt
+# Press Enter when asked for password
+
+/Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="," --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/ICBP.csv
+# Press Enter when asked for password
+
+/Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/MAGIC_FastingGlucose.txt
+# Press Enter when asked for password
+
+/Applications/XAMPP/xamppfiles/bin/mysql -uroot
+USE project; 
+GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
+GRANT ALL ON project.* TO 'CardioGeni'@'127.0.0.1' IDENTIFIED BY 'zap';
+select count(*) from BMI;
+select * from BMI limit 10;
+select count(*) from ICBP;
+select * from ICBP limit 10;
+select count(*) from MAGIC_FastingGlucose;
+select * from MAGIC_FastingGlucose limit 10;
