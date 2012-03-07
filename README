@@ -17,7 +17,7 @@ N INTEGER
 );
 
 CREATE TABLE ICBP (
-rsid VARCHAR(128),
+MarkerName VARCHAR(128),
 chr_hg18 INTEGER,
 pos_hg18 INTEGER,
 pval_GC_SBP FLOAT,
@@ -25,7 +25,7 @@ pval_GC_DBP FLOAT
 );
 
 CREATE TABLE MAGIC_FastingGlucose (
-SNP VARCHAR(128),
+MarkerName VARCHAR(128),
 effect_allele VARCHAR(128),
 other_allele VARCHAR(128),
 maf FLOAT,
@@ -64,9 +64,12 @@ INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
 USE project; 
 GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
 GRANT ALL ON project.* TO 'CardioGeni'@'127.0.0.1' IDENTIFIED BY 'zap';
-select count(*) from BMI;
-select * from BMI limit 10;
-select count(*) from ICBP;
-select * from ICBP limit 10;
-select count(*) from MAGIC_FastingGlucose;
-select * from MAGIC_FastingGlucose limit 10;
+
+alter table BMI add column PMID INTEGER; 
+UPDATE BMI SET PMID="20935630";
+
+alter table ICBP add column PMID INTEGER; 
+UPDATE ICBP SET PMID="21909115";
+
+alter table MAGIC_FastingGlucose add column PMID INTEGER;
+UPDATE MAGIC_FastingGlucose SET PMID="21873549";
