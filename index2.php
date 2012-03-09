@@ -70,7 +70,6 @@ if ( isset($_SESSION['success']) ) {
 	<div class="clear">&nbsp;</div>
 	
 <?php
-echo "Welcome to CardioGeni!\n";
 echo '<table  border="1"> <br> 
 <tr>
 	<th>MarkerName</th>
