@@ -71,15 +71,15 @@ if ( isset($_SESSION['success']) ) {
 	
 <?php
 echo "Welcome to CardioGeni!\n";
-echo '<table  border="1"> 
+echo '<table  border="1"> <br> 
 <tr>
-	<th>rsid</th>
+	<th>MarkerName</th>
 	<th>chr_hg18</th>
 	<th>pos_hg18</th>
 	<th>pval_GC_SBP</th>
 	<th>pval_GC_DBP</th>
 </tr>'."\n";
-$result = mysql_query("SELECT rsid, chr_hg18, pos_hg18, pval_GC_SBP, pval_GC_DBP FROM ICBP limit 10");
+$result = mysql_query("SELECT MarkerName, chr_hg18, pos_hg18, pval_GC_SBP, pval_GC_DBP FROM ICBP limit 10");
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
     echo(htmlentities($row[0]));
