@@ -20,7 +20,7 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
 	}
 }
 if ( $_SESSION['username'] ) {
-   header( 'Location: index.html');
+   header( 'Location: index2.php');
    echo('<p><a href="logout.html">Logout</a></p>'."\n");
    return;
 } 
