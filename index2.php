@@ -34,7 +34,7 @@ if ( isset($_SESSION['success']) ) {
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
-	<li id ="tab1" > <a href="#" >Upload</a></li>
+	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
 	<li id ="tab2"> <a href="#" class="active">Query </a></li>
 	</ul>
 	</div>
