@@ -43,7 +43,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div id="navcontainer">
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="query.php" >Query </a></li>
+	<li id ="tab2"> <a href="query.php" >Query</a></li>
 	</ul>
 	</div>
 	</div>
@@ -63,7 +63,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	</p>
 	<p>
 		<span>Already registered? </span> 
-		Click here to log in. 
+		Click here to log in. </br>
 		<input type="submit" value="Login"/>
 		<a href="index.html">Cancel</a>
 	</p>
@@ -79,7 +79,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <p>Welcome to CardioGeniDB!</p>
 
 <p>CardioGeni is a database of publicly available results from genome-wide association studies (GWAS) involving
-traits related to cardiovascular disease or metabolic disorders such as blood pressure, body mass index, and type II diabetes.</p>
+traits related to cardiovascular disease and metabolic disorders such as blood pressure, body mass index, and type II diabetes.</p>
 
 <p>Follow the links to query data from the existing database, or upload your own data for others to query.</p>
 
@@ -89,7 +89,25 @@ traits related to cardiovascular disease or metabolic disorders such as blood pr
 
 <!-- BEGIN BOTTOM SECTION-->
 	<div class="g918">
-	<div id="line"></div>
+	<div id="line"></div> 
+	<p> 
+	</br>
+References </br> </br>
+(i) Dupuis J et al, New genetic loci implicated in fasting glucose homeostasis and their impact on type 2 diabetes risk. Nat Genet. 2010;42:105-16, for data from the meta-analysis results for fasting glucose, fasting insulin, HOMA-IR and HOMA-B.</br>
+
+(ii) Saxena R et al, Genetic variation in GIPR influences the glucose and insulin responses to an oral glucose challenge. Nat Genet. 2010:42:142-8 for data from the 2hr glucose GWAS.</br>
+
+(iii) Soranzo N et al, Common variants at 10 genomic loci influence hemoglobin A1(C) levels via glycemic and nonglycemic pathways. Diabetes 2010: 59;12;3229-39 for HbA1c data. </br>
+
+(iv) Strawbridge R et al, Genome-wide association identifies nine common variants associated with fasting proinsulin levels and provides new insights into the pathophysiology of type 2 diabetes for proinsulin data. Diabetes2011; 60;10;2624-2634 for proinsulin data.</br>
+
+(v) Speliotes, E.K., Willer, C.J., Berndt, S.I., Monda, K.L., Thorleifsson, G., Jackson, A.U., Allen, H.L., Lindgren, C.M., Luan, J., Magi, R., et al. (2010). Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index. Nat Genet 42, 937-948.</br>
+
+(vi) International Consortium for Blood Pressure Genome-Wide Association Studies et al. (2011) Genetic variants in novel pathways influence blood pressure and cardiovascular disease risk. Nature 478, 103-109.</p>
+
+<p> Data on glycaemic traits have been contributed by MAGIC investigators and have been downloaded from www.magicinvestigators.org </p>
+
+<div id="line"></div>
 	<p> 
 	Amelia </br> Ellen </br> John </br> Kelly
 	</p>
