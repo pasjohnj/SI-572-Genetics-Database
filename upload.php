@@ -42,7 +42,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
-	<li id ="tab1" > <a href="#" >Upload</a></li>
+	<li id ="tab1" > <a href="#" class="active">Upload</a></li>
 	<li id ="tab2"> <a href="query.php" >Query </a></li>
 	</ul>
 	</div>
