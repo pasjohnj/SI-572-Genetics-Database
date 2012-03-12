@@ -43,7 +43,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div id="navcontainer">
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="query.php" >Query </a></li>
+	<li id ="tab2"> <a href="#" class="active">Query </a></li>
 	</ul>
 	</div>
 	</div>
