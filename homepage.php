@@ -42,8 +42,8 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
-	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="query.php" >Query</a></li>
+	<li id ="tab1" > <a href="upload.php" > Upload </a></li>
+	<li id ="tab2"> <a href="query.php" > Query </a></li>
 	</ul>
 	</div>
 	</div>
@@ -56,16 +56,16 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN STUFF ON THE LEFT-->
 	<div class = "g306">
 	<p>
-		<span>Register!</span>  
-		Enter your information on the form to become a new user!
-		<input type="submit" value="Register"/>
-		<a href="index.html">Cancel</a>
+		<span>Register! </span>  
+		Click here to enter your information and become a <a href="register.php" > new user</a>.
+		<!--<input type="submit" value="Register"/>
+		<a href="index.html"> Cancel</a> -->
 	</p>
 	<p>
 		<span>Already registered? </span> 
-		Click here to log in. </br>
-		<input type="submit" value="Login"/>
-		<a href="index.html">Cancel</a>
+		Click here to <a href="login.php"> log in</a>. </br>
+		<!--<input type="submit" value="Login"/>
+		<a href="index.html">Cancel</a> -->
 	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
@@ -92,7 +92,7 @@ traits related to cardiovascular disease and metabolic disorders such as blood p
 	<div id="line"></div> 
 	<p> 
 	</br>
-References </br> </br>
+Data currently available on CardioGeni are from the following references: </br> </br>
 (i) Dupuis J et al, New genetic loci implicated in fasting glucose homeostasis and their impact on type 2 diabetes risk. Nat Genet. 2010;42:105-16, for data from the meta-analysis results for fasting glucose, fasting insulin, HOMA-IR and HOMA-B.</br>
 
 (ii) Saxena R et al, Genetic variation in GIPR influences the glucose and insulin responses to an oral glucose challenge. Nat Genet. 2010:42:142-8 for data from the 2hr glucose GWAS.</br>
