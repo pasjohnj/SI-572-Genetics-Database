@@ -39,15 +39,16 @@ PMID INTEGER,
 First_author VARCHAR(128),
 journal VARCHAR(128),
 pub_year INTEGER,
-title VARCHAR(5000)
+title VARCHAR(5000),
+trait VARCHAR(128)
 );
 
-INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
-  VALUES (20935630, 'Speliotes EK', 'Nature Genetics', 2010, 'Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index');
-INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
-  VALUES (21873549, 'Strawbridge RJ' , 'Diabetes', 2011, 'Genome-wide association identifies nine common variants associated with fasting proinsulin levels and provides new insights into the pathophysiology of type 2 diabetes');
-INSERT INTO Publications (PMID, First_author, journal, pub_year, title)
-  VALUES (21909115, 'Ehret GB', 'Nature', 2011, 'Genetic Variants in Novel Pathways Influence Blood Pressure and Cardiovascular Disease Risk');
+INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
+  VALUES (20935630, 'Speliotes EK', 'Nature Genetics', 2010, 'Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index', 'BMI');
+INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
+  VALUES (21873549, 'Strawbridge RJ' , 'Diabetes', 2011, 'Genome-wide association identifies nine common variants associated with fasting proinsulin levels and provides new insights into the pathophysiology of type 2 diabetes', 'Fasting Glucose');
+INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
+  VALUES (21909115, 'Ehret GB', 'Nature', 2011, 'Genetic Variants in Novel Pathways Influence Blood Pressure and Cardiovascular Disease Risk', 'BP');
 
 \q
 
