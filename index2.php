@@ -73,10 +73,10 @@ if ( isset($_SESSION['success']) ) {
 echo '<table  border="1"> <br> 
 <tr>
 	<th>MarkerName</th>
-	<th>chr_hg18</th>
-	<th>pos_hg18</th>
-	<th>pval_GC_SBP</th>
-	<th>pval_GC_DBP</th>
+	<th>Chromosome</th>
+	<th>Position (hg18)</th>
+	<th>P-value (SBP)</th>
+	<th>P-value (DBP)</th>
 </tr>'."\n";
 $result = mysql_query("SELECT MarkerName, chr_hg18, pos_hg18, pval_GC_SBP, pval_GC_DBP FROM ICBP limit 10");
 while ( $row = mysql_fetch_row($result) ) {
