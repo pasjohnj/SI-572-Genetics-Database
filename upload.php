@@ -62,7 +62,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	</p>
 	<p>
 		<span>Already registered? </span> 
-		Click here to log in.
+		Click here to <a href="login.php"> log in</a>.
 	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
