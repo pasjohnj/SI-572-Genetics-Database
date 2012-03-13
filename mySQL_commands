@@ -13,7 +13,8 @@ Allele1 VARCHAR(128),
 Allele2 VARCHAR(128),
 Freq_Allele1_HapMapCEU FLOAT,
 p FLOAT,
-N INTEGER
+N INTEGER,
+INDEX MarkerName_IDX (MarkerName),
 );
 
 CREATE TABLE ICBP (
@@ -21,7 +22,8 @@ MarkerName VARCHAR(128),
 chr_hg18 INTEGER,
 pos_hg18 INTEGER,
 pval_GC_SBP FLOAT,
-pval_GC_DBP FLOAT
+pval_GC_DBP FLOAT,
+INDEX MarkerName_IDX (MarkerName)
 );
 
 CREATE TABLE MAGIC_FastingGlucose (
@@ -31,7 +33,8 @@ other_allele VARCHAR(128),
 maf FLOAT,
 effect FLOAT,
 stderr FLOAT,
-pvalue FLOAT
+pvalue FLOAT,
+INDEX MarkerName_IDX (MarkerName)
 );
 
 CREATE TABLE Publications (
