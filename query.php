@@ -54,7 +54,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN STUFF ON RIGHT-->
 	<div class ="g612">
 
-<p>Make a query</p>
+<p>Query data from the current database using one or more of the following fields:</p>
 
 <form method="post">
 <p>MarkerName (rsID):
@@ -65,7 +65,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <input type="text" name="pos_hg18"
 	value= "<?php echo htmlentities($_POST['pos_hg18']);?>" > </p>
 <p><input type="submit" value="Submit">
-<a href="index.html">Cancel</a></p>
+<a href="homepage.php">Cancel</a></p>
 </form>
 
 </div >

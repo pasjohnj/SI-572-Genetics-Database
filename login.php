@@ -20,7 +20,7 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
 	}
 }
 if ( $_SESSION['username'] ) {
-   header( 'Location: index2.php');
+   header( 'Location: upload.php');
    echo('<p><a href="logout.html">Logout</a></p>'."\n");
    return;
 } 
@@ -93,10 +93,6 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN BOTTOM SECTION-->
 	<div class="g918">
 	<div id="line"></div>
-	<p> 
-	Amelia  </br> Ellen </br>John </br>
-	Kelly
-	</p>
 	</div>	
 
 

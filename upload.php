@@ -15,7 +15,7 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 	}
 ?>
 
-
+<html>
 <head>
 
 
@@ -62,7 +62,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	</p>
 	<p>
 		<span>Already registered? </span> 
-		Click here to log in.
+		Click here to <a href="login.php"> log in</a>.
 	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
@@ -81,7 +81,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	echo 'value="' .htmlentities($_POST['username']) .'"';
 	?>></p>
 <p><input type="submit" value="Submit"/>
-<a href="index.html">Cancel</a></p>
+<a href="homepage.php">Cancel</a></p>
 </form>
 
 </div >
@@ -91,13 +91,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN BOTTOM SECTION-->
 	<div class="g918">
 	<div id="line"></div>
-	<p> 
-	Amelia  </br> Ellen </br>John </br>
-	Kelly
-	</p>
 	</div>	
-
-
 
 	<div class="clear">&nbsp;</div>
 	
@@ -113,3 +107,4 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 </div >
 
 </body>
+</html>
