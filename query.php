@@ -54,7 +54,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN STUFF ON RIGHT-->
 	<div class ="g612">
 
-<p>Make a query</p>
+<p>Query data from the current database using one or more of the following fields:</p>
 
 <form method="post">
 <p>MarkerName (rsID):
