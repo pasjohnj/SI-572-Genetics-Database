@@ -81,7 +81,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	echo 'value="' .htmlentities($_POST['username']) .'"';
 	?>></p>
 <p><input type="submit" value="Submit"/>
-<a href="index.html">Cancel</a></p>
+<a href="homepage.php">Cancel</a></p>
 </form>
 
 </div >
