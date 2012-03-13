@@ -15,7 +15,7 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 	}
 ?>
 
-
+<html>
 <head>
 
 
@@ -109,11 +109,10 @@ Data currently available on CardioGeni are from the following references: </br> 
 
 <div id="line"></div>
 	<p> 
-	Amelia </br> Ellen </br> John </br> Kelly
+	Amelia Mowry</br> Ellen Schmidt</br> John Pas</br> Kelly Grossmann
 	</p>
+	<p align="right"> Last Updated 3/13/2012 </p>
 	</div>	
-
-
 
 	<div class="clear">&nbsp;</div>
 	
@@ -124,8 +123,8 @@ Data currently available on CardioGeni are from the following references: </br> 
 	
 	</div> 
 <!-- end page content -->
-
 			
 </div >
 
 </body>
+</html>
