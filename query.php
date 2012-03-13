@@ -1,24 +1,21 @@
 <?php
 require_once "db.php";
 session_start();
+if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
+    unset($_SESSION['success']);
+}
 
-if (  isset($_POST['username']) && isset($_POST['password'])) {
-	echo 'something';
-	$username = mysql_real_escape_string($_POST['username']);
-	$password = mysql_real_escape_string($_POST['password']);
-	$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-	mysql_query($sql);
-	echo 'blah';
-	$_SESSION['success'] = 'User Added';
-	header( 'Location: index.html' ) ;
-	return;
-	}
+
 ?>
 
 
+<html>
 <head>
-
-
 
 <!-- main style sheet -->
 <link href = "style.css" media= "screen" rel="stylesheet" />
@@ -43,7 +40,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div id="navcontainer">
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="#" class="active">Query </a></li>
+	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
 	</ul>
 	</div>
 	</div>
@@ -53,51 +50,69 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
 
-<!-- BEGIN STUFF ON THE LEFT-->
-	<div class = "g306">
-	<p>
-		<span>Register!</span>  
-		
-		Enter your information on the form to become a new user!
-	</p>
-	<p>
-		<span>Already registered? </span> 
-		Click here to log in.
-	</p>
-	<div class="clear">&nbsp;</div>
-	</div>
-<!-- END STUFF ON THE LEFT-->
 
-<!-- ADD USER STUFF ON RIGHT-->
+<!-- BEGIN STUFF ON RIGHT-->
 	<div class ="g612">
 
-
-
-<p>This is the query page (under construction) </p>
+<p>Make a query</p>
 
 <form method="post">
-<p>Username:
-<input type="text" name="username" <?php 
-	echo 'value="' .htmlentities($_POST['username']) .'"';
-	?>></p>
-<p>Password:
-<input type="password" name="password"<?php 
-	echo 'value="' .htmlentities($_POST['password']) .'"';
-	?>></p>
-<p><input type="submit" value="Submit"/>
+<p>MarkerName (rsID):
+<input type="text" 
+       name="MarkerName" 
+       value="<?php echo htmlentities($_POST['MarkerName']);?>" > </p>
+<p>Position (hg18):
+<input type="text" name="pos_hg18"
+	value= "<?php echo htmlentities($_POST['pos_hg18']);?>" > </p>
+<p><input type="submit" value="Submit">
 <a href="index.html">Cancel</a></p>
 </form>
 
 </div >
 	<div class="clear">&nbsp;</div>
+	
+<?php
+echo '<table  border="1"> <br> 
+<tr>
+	<th>MarkerName</th>
+	<th>Chromosome</th>
+	<th>Position (hg18)</th>
+	<th>P-value (SBP)</th>
+	<th>P-value (DBP)</th>
+</tr>'."\n";
 
+if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18'])) {
+	echo "<!--\n$sql\n-->\n";
+	$markername = mysql_real_escape_string($_POST['MarkerName']);
+	$position = mysql_real_escape_string($_POST['pos_hg18']);
+	$sql = "SELECT * FROM ICBP WHERE MarkerName='$markername'";
+	/*$sql2= "SELECT * FROM ICBP WHERE pos_hg18='$position'";*/
+	mysql_query($sql);
+	$_SESSION['success'] = 'Successful Query';
+	
 
-<!-- BEGIN BOTTOM SECTION-->
+$result = mysql_query($sql);
+while ( $row = mysql_fetch_row($result) ) {
+    echo "<tr><td>";
+    echo(htmlentities($row[0]));
+    echo("</td><td>");
+    echo(htmlentities($row[1]));
+    echo("</td><td>");
+    echo(htmlentities($row[2]));
+    echo("</td><td>");
+    echo(htmlentities($row[3]));
+    echo("</td><td>");
+    echo(htmlentities($row[4]));
+    echo("</td></tr>");
+    }
+}
+?>	
+	
+<!-- BEGIN BOTTOM SECTION
 	<div class="g918">
 	<div id="line"></div>
 	<p> 
-	Amelia  </br> Ellen </br>John </br>
-	Kelly
+	Amelia </br> Ellen </br> John </br> Kelly
 	</p>
 	</div>	
 
@@ -107,7 +122,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	
 
 	</div>
-<!-- END BOTTOM SECTION-->
+	END BOTTOM SECTION-->
 
 	
 	</div> 
@@ -117,3 +132,4 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 </div >
 
 </body>
+</html>
