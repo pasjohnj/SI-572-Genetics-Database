@@ -77,8 +77,7 @@ echo '<table  border="1"> <br>
 	<th>MarkerName</th>
 	<th>Chr</th>
 	<th>Position (hg18)</th>
-	<th>P-value (SBP)</th>
-	<th>P-value (DBP)</th>
+	<th>Association P-value</th>
 	<th>Trait</th>
 	<th>First Author</th>
 	<th>Journal</th>
@@ -92,7 +91,7 @@ if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18'])) {
 	$markername = mysql_real_escape_string($_POST['MarkerName']);
 	$position = mysql_real_escape_string($_POST['pos_hg18']);
 	$sql = 
-	"SELECT MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,pval_GC_DBP,trait,First_author,Journal,pub_year,title,ICBP.PMID
+	"SELECT MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,trait,First_author,Journal,pub_year,title,ICBP.PMID
 	FROM ICBP, Publications
 	WHERE ICBP.PMID = Publications.PMID AND (MarkerName='$markername' OR pos_hg18='$position')";
 	/*mysql_query($sql);
@@ -120,8 +119,6 @@ while ( $row = mysql_fetch_row($result) ) {
     echo(htmlentities($row[8]));
     echo("</td><td>");
     echo(htmlentities($row[9]));
-    echo("</td><td>");
-    echo(htmlentities($row[10]));
     echo("</td></tr>");
     }	
 }
