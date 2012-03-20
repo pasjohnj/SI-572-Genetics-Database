@@ -61,7 +61,7 @@ INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
 INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
   VALUES (21909115, 'Ehret GB', 'Nature', 2011, 'Genetic Variants in Novel Pathways Influence Blood Pressure and Cardiovascular Disease Risk', 'BP');
 
--- Populate database with GWAS data
+-- Populate database with GWAS data (command line)
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by=" " --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/BMI.txt
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="," --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/ICBP.csv
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/MAGIC_FastingGlucose.txt
