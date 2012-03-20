@@ -141,8 +141,9 @@ background: #ffffff;
 h1 {
 display: none;
 }
-#name   {
+#name a {
 background-image: url('./images/cardioheading.png');
+display: block;
 background-repeat: no-repeat;
 margin-top: -40px;
 left: 10px;
@@ -152,6 +153,11 @@ position: relative;
 z-index: 80;
 
 }
+
+#name span {
+visibility: hidden;
+}
+
 .top {
 background-image: url('./images/line.png');
 background-repeat: repeat-x;
