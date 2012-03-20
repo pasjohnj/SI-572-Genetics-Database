@@ -35,7 +35,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
 	<div class="g918">	
 	<div class="top">
-	<div id ="name"></div>
+	<div id ="name"><a href="index.php"><span>Home</span></a></div>
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
