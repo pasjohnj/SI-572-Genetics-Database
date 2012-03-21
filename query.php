@@ -41,6 +41,11 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
 	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
+	<?php if ($_SESSION['username'])
+	{
+	echo "<li id="tab3"> <a href=\"logout.php\">Logout</a></li>";
+	}
+	?>
 	</ul>
 	</div>
 	</div>
