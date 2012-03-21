@@ -31,8 +31,8 @@ INDEX MarkerName_IDX (MarkerName),
 INDEX pos_hg18_IDX (pos_hg18)
 );
 
--- Create MAGIC_FastingGlucose table
-CREATE TABLE MAGIC_FastingGlucose (
+-- Create FastingGlucose table
+CREATE TABLE FastingGlucose (
 MarkerName VARCHAR(128),
 effect_allele VARCHAR(128),
 other_allele VARCHAR(128),
@@ -45,7 +45,7 @@ INDEX MarkerName_IDX (MarkerName)
 
 -- Create Publications table
 CREATE TABLE Publications (
-PMID INTEGER,
+PMID INTEGER NOT NULL KEY,
 First_author VARCHAR(128),
 journal VARCHAR(128),
 pub_year INTEGER,
@@ -53,7 +53,7 @@ title VARCHAR(5000),
 trait VARCHAR(128)
 );
 
--- Insert initial data
+-- Insert data into Publications table
 INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
   VALUES (20935630, 'Speliotes EK', 'Nature Genetics', 2010, 'Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index', 'BMI');
 INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
@@ -64,7 +64,7 @@ INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
 -- Populate database with GWAS data (command line)
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by=" " --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/BMI.txt
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="," --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/ICBP.csv
-/Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/MAGIC_FastingGlucose.txt
+/Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/FastingGlucose.txt
 
 -- Enter database
 USE project; 
@@ -73,6 +73,11 @@ USE project;
 DROP USER 'CardioGeni'@'localhost';
 GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
 
+-- Create integer primary keys for each data table
+alter table BMI add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
+alter table ICBP add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
+alter table FastingGlucose add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
+
 -- Add PMID to each data table
 alter table BMI add column PMID INTEGER; 
 UPDATE BMI SET PMID="20935630";
@@ -80,6 +85,6 @@ UPDATE BMI SET PMID="20935630";
 alter table ICBP add column PMID INTEGER; 
 UPDATE ICBP SET PMID="21909115";
 
-alter table MAGIC_FastingGlucose add column PMID INTEGER;
-UPDATE MAGIC_FastingGlucose SET PMID="21873549";
+alter table FastingGlucose add column PMID INTEGER;
+UPDATE FastingGlucose SET PMID="21873549";
 
