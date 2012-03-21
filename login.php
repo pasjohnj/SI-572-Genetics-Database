@@ -21,7 +21,7 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
 }
 if ( $_SESSION['username'] ) {
    header( 'Location: upload.php');
-   echo('<p><a href="logout.html">Logout</a></p>'."\n");
+   //echo('<p><a href="logout.html">Logout</a></p>'."\n");
    return;
 } 
 ?>
@@ -77,7 +77,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!--LOGIN FORM-->
 
 <p>Please log in!</p>
-<p>Please log in to upload a dataset.</p>
+<p>Please log or <a href="register.php">register</a>in to upload a dataset.</p>
 <form method="post">
 <p>Username:
 <input type="text" name="username"></p>
