@@ -61,6 +61,24 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
+	
+<!-- BEGIN STUFF ON THE LEFT-->
+	<div class = "g306">
+	<p>
+		<span>Upload your GWAS Results </span>  
+		Registered users may upload association study results files with a 
+		maximum size limit of 20Mb. This allows for a gzipped text table including key columns 
+		(marker name, p-value, standard error, effect size, and sample size) 
+		for up to ~3 million SNPs.<br> <br>
+		
+		In addition to uploading your results file, please fill in the provided 
+		metadata fields with the accompanying publication information.<br><br>
+		
+		Your uploaded results will be publicly accessible to everyone.
+	</p>
+	<div class="clear">&nbsp;</div>
+	</div>
+<!-- END STUFF ON THE LEFT-->
 
 <!-- ADD USER STUFF ON RIGHT-->
 	<div class ="g612">
