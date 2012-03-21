@@ -35,12 +35,17 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
 	<div class="g918">	
 	<div class="top">
-	<div id ="name"></div>
+	<div id ="name"><a href="index.php"><span>Home</span></a></div>
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
 	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
+	<?php if ($_SESSION['username'])
+	{
+	echo "<li id="tab3"> <a href=\"logout.php\">Logout</a></li>";
+	}
+	?>
 	</ul>
 	</div>
 	</div>
@@ -65,7 +70,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <input type="text" name="pos_hg18"
 	value= "<?php echo htmlentities($_POST['pos_hg18']);?>" > </p>
 <p><input type="submit" value="Submit">
-<a href="homepage.php">Cancel</a></p>
+<a href="index.php">Cancel</a></p>
 </form>
 
 </div >
@@ -75,21 +80,27 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 echo '<table  border="1"> <br> 
 <tr>
 	<th>MarkerName</th>
-	<th>Chromosome</th>
+	<th>Chr</th>
 	<th>Position (hg18)</th>
-	<th>P-value (SBP)</th>
-	<th>P-value (DBP)</th>
+	<th>Association P-value</th>
+	<th>Trait</th>
+	<th>First Author</th>
+	<th>Journal</th>
+	<th>Publication Year</th>
+	<th>Title</th>
+	<th>PMID</th>
 </tr>'."\n";
 
 if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18'])) {
 	echo "<!--\n$sql\n-->\n";
 	$markername = mysql_real_escape_string($_POST['MarkerName']);
 	$position = mysql_real_escape_string($_POST['pos_hg18']);
-	$sql = "SELECT * FROM ICBP WHERE MarkerName='$markername'";
-	/*$sql2= "SELECT * FROM ICBP WHERE pos_hg18='$position'";*/
-	mysql_query($sql);
-	$_SESSION['success'] = 'Successful Query';
-	
+	$sql = 
+	"SELECT MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,trait,First_author,Journal,pub_year,title,ICBP.PMID
+	FROM ICBP, Publications
+	WHERE ICBP.PMID = Publications.PMID AND (MarkerName='$markername' OR pos_hg18='$position')";
+	/*mysql_query($sql);
+	$_SESSION['success'] = 'Successful Query';*/
 
 $result = mysql_query($sql);
 while ( $row = mysql_fetch_row($result) ) {
@@ -103,8 +114,18 @@ while ( $row = mysql_fetch_row($result) ) {
     echo(htmlentities($row[3]));
     echo("</td><td>");
     echo(htmlentities($row[4]));
+    echo("</td><td>");
+    echo(htmlentities($row[5]));
+    echo("</td><td>");
+    echo(htmlentities($row[6]));
+    echo("</td><td>");
+    echo(htmlentities($row[7]));
+    echo("</td><td>");
+    echo(htmlentities($row[8]));
+    echo("</td><td>");
+    echo(htmlentities($row[9]));
     echo("</td></tr>");
-    }
+    }	
 }
 ?>	
 	

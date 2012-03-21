@@ -13,6 +13,10 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 	header( 'Location: index.html' ) ;
 	return;
 	}
+if (!($_SESSION['username']))
+	{
+	header("Location: login.php");
+	}
 ?>
 
 <html>
@@ -38,12 +42,17 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
 	<div class="g918">	
 	<div class="top">
-	<div id ="name"></div>
+	<div id ="name"><a href="index.php"><span>Home</span></a></div>
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="#" class="active">Upload</a></li>
 	<li id ="tab2"> <a href="query.php" >Query </a></li>
+	<?php if ($_SESSION['username'])
+	{
+	echo "<p> <a href=\"logout.php\">Logout</a></p>";
+	}
+	?>
 	</ul>
 	</div>
 	</div>
@@ -53,36 +62,28 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
 
-<!-- BEGIN STUFF ON THE LEFT-->
-	<div class = "g306">
-	<p>
-		<span>Register!</span>  
-		
-		Enter your information on the form to become a new user!
-	</p>
-	<p>
-		<span>Already registered? </span> 
-		Click here to <a href="login.php"> log in</a>.
-	</p>
-	<div class="clear">&nbsp;</div>
-	</div>
-<!-- END STUFF ON THE LEFT-->
-
 <!-- ADD USER STUFF ON RIGHT-->
 	<div class ="g612">
 
+<!-- BEGIN UPLOAD STUFF -->
 
-
-<p>This is the upload page (under construction)</p>
+<div class="upload">
+<p>Upload your data.  <big>DO IT.</big></p>
 
 <form method="post">
-<p>Upload:
-<input type="text" name="username" <?php 
+<p>Please paste properly-formatted .csv file:</p>
+<p>
+<textarea name="username" cols="150" rows="50">
+</textarea>
+<!--<input type="submit" name="username" <?php 
 	echo 'value="' .htmlentities($_POST['username']) .'"';
-	?>></p>
-<p><input type="submit" value="Submit"/>
-<a href="homepage.php">Cancel</a></p>
+	?>></p>-->
+<p><input type="submit" value="Upload"/>
+<a href="index.php">Cancel</a></p>
 </form>
+</div>
+
+<!-- END UPLOAD STUFF -->
 
 </div >
 	<div class="clear">&nbsp;</div>
