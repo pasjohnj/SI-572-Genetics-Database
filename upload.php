@@ -13,6 +13,10 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 	header( 'Location: index.html' ) ;
 	return;
 	}
+if (!($_SESSION['username']))
+	{
+	header("Location: login.php");
+	}
 ?>
 
 <html>
@@ -44,6 +48,11 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="#" class="active">Upload</a></li>
 	<li id ="tab2"> <a href="query.php" >Query </a></li>
+	<?php if ($_SESSION['username'])
+	{
+	echo "<p> <a href=\"logout.php\">Logout</a></p>";
+	}
+	?>
 	</ul>
 	</div>
 	</div>
