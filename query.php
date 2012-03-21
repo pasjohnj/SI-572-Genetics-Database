@@ -43,7 +43,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
 	<?php if ($_SESSION['username'])
 	{
-	echo "<li id="tab3"> <a href=\"logout.php\">Logout</a></li>";
+	echo "<p> <a href=\"logout.php\">Logout</a></p>";
 	}
 	?>
 	</ul>
