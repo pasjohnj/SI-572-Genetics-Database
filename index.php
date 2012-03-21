@@ -2,7 +2,7 @@
 require_once "db.php";
 session_start();
 
-if (  isset($_POST['username']) && isset($_POST['password'])) {
+/*if (  isset($_POST['username']) && isset($_POST['password'])) {
 	echo 'something';
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
@@ -12,7 +12,7 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 	$_SESSION['success'] = 'User Added';
 	header( 'Location: index.html' ) ;
 	return;
-	}
+	} Do we need this chunk of code here??*/
 ?>
 
 <html>
