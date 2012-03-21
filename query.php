@@ -77,7 +77,15 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class="clear">&nbsp;</div>
 	
 <?php
-echo '<table  border="1"> <br> 
+if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18'])) {
+	echo "<!--\n$sql\n-->\n";
+	$markername = mysql_real_escape_string($_POST['MarkerName']);
+	$position = mysql_real_escape_string($_POST['pos_hg18']);
+	$sql = 
+	"SELECT MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,trait,First_author,Journal,pub_year,title,ICBP.PMID
+	FROM ICBP, Publications
+	WHERE ICBP.PMID = Publications.PMID AND (MarkerName='$markername' OR pos_hg18='$position')";
+	echo '<table  border="1"> <br> 
 <tr>
 	<th>MarkerName</th>
 	<th>Chr</th>
@@ -90,17 +98,6 @@ echo '<table  border="1"> <br>
 	<th>Title</th>
 	<th>PMID</th>
 </tr>'."\n";
-
-if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18'])) {
-	echo "<!--\n$sql\n-->\n";
-	$markername = mysql_real_escape_string($_POST['MarkerName']);
-	$position = mysql_real_escape_string($_POST['pos_hg18']);
-	$sql = 
-	"SELECT MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,trait,First_author,Journal,pub_year,title,ICBP.PMID
-	FROM ICBP, Publications
-	WHERE ICBP.PMID = Publications.PMID AND (MarkerName='$markername' OR pos_hg18='$position')";
-	/*mysql_query($sql);
-	$_SESSION['success'] = 'Successful Query';*/
 
 $result = mysql_query($sql);
 while ( $row = mysql_fetch_row($result) ) {
