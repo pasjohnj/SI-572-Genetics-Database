@@ -3,14 +3,12 @@ require_once "db.php";
 session_start();
 
 if (  isset($_POST['username']) && isset($_POST['password'])) {
-	echo 'something';
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
 	mysql_query($sql);
-	echo 'blah';
 	$_SESSION['success'] = 'User Added';
-	header( 'Location: index.html' ) ;
+	header( 'Location: upload.php' ) ;
 	return;
 	}
 ?>
