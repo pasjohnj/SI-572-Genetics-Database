@@ -7,7 +7,7 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
    $password = mysql_real_escape_string($_POST['password']);
    $sql = "SELECT username FROM users 
               WHERE username = '$username' AND password='$password'";
-	echo "<!--\n$sql\n-->\n";
+	/*echo "<!--\n$sql\n-->\n";*/
    $result = mysql_query($sql);
    $row = mysql_fetch_row($result);	
    if ( $row === FALSE ) {
@@ -15,7 +15,6 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
       unset($_SESSION['username']);
    } 
    else { 
-      echo "<p>Login success.</p>\n";
       $_SESSION['username'] = $row[0];
 	}
 }
