@@ -83,7 +83,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <p>Password:
 <input type="password" name="password"></p>
 <p><input type="submit" value="Login"/>
-<a href="login.html">Refresh</a></p>
+<a href="login.php">Refresh</a></p>
 </form>
 </div >
 	<div class="clear">&nbsp;</div>
