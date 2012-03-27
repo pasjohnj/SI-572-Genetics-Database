@@ -74,7 +74,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- END STUFF ON THE LEFT-->
 
 <!--LOGIN FORM-->
-
+<div="g612">
 <p>Please log in!</p>
 <p>Log in here or <a href="register.php">register </a> to upload a dataset.</p>
 <form method="post">
