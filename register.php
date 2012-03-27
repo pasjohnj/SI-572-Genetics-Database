@@ -56,7 +56,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<p>
 		<span>Register!</span>  
 		
-		Enter your information on the form to become a new user.
+		Enter your information on this form to become a new user.
 	</p>
 	<p>
 		<span>Already registered? </span> 
