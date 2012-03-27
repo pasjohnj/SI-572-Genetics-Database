@@ -3,7 +3,7 @@ session_start();
 unset($_SESSION['username']);
 ?>
 
-
+<html>
 <head>
 <!-- main style sheet -->
 <link href = "style.css" media= "screen" rel="stylesheet" />
@@ -47,7 +47,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div id="navcontainer">
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
+	<li id ="tab2"> <a href="query.php" >Query </a></li>
 	</ul>
 	</div>
 	</div>
@@ -60,19 +60,15 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN STUFF ON THE LEFT-->
 	<div class = "g306">
 	<p>
-		<span>Upload!</span>  
-		Enter your data information on the form.
-	</p>
-	<p>
 		<span>Need help?</span> 
-		Try something else...
+		Return to the CardioGeni <a href="index.php" >homepage</a>.
 	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
 <!-- END STUFF ON THE LEFT-->
 
 <!--LOGOUT MESSAGE FORM-->
-
+<div class="g612">
 <p>Logged out...</p>
 <p><a href="login.php">Login Again</a></p>
 </div >
@@ -128,5 +124,6 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 </div >
 
 </body>
+</html>
 
 	

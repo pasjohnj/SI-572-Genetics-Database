@@ -2,7 +2,7 @@
 require_once "db.php";
 session_start();
 
-if (  isset($_POST['username']) && isset($_POST['password'])) {
+/*if (  isset($_POST['username']) && isset($_POST['password'])) {
 	echo 'something';
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
@@ -12,7 +12,7 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 	$_SESSION['success'] = 'User Added';
 	header( 'Location: index.html' ) ;
 	return;
-	}
+	} Do we need this chunk of code here??*/
 ?>
 
 <html>
@@ -36,8 +36,18 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <div class="main">
 	<div class="page">
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
-	<div class="g918">	
+	<div class="g918">
+	<div class="secondaryNav">
+	<?php if ($_SESSION['username'])
+	{
+	echo "<p> Logged in as: ";
+	echo(htmlentities($_SESSION['username']));
+	echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"logout.php\">Logout</a></p>";
+	}
+	?>
+	</div>
 	<div class="top">
+	
 	<div id ="name"><a href="index.php"><span>Home</span></a></div>
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
@@ -111,7 +121,7 @@ Data currently available on CardioGeni are from the following references: </br> 
 	<p> 
 	Amelia Mowry</br> Ellen Schmidt</br> John Pas</br> Kelly Grossmann
 	</p>
-	<p align="right"> Last Updated 3/13/2012 </p>
+	<p align="right"> Last Updated 3/27/2012 </p>
 	</div>	
 
 	<div class="clear">&nbsp;</div>

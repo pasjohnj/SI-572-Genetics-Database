@@ -3,14 +3,12 @@ require_once "db.php";
 session_start();
 
 if (  isset($_POST['username']) && isset($_POST['password'])) {
-	echo 'something';
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
 	mysql_query($sql);
-	echo 'blah';
 	$_SESSION['success'] = 'User Added';
-	header( 'Location: index.html' ) ;
+	header( 'Location: upload.php' ) ;
 	return;
 	}
 ?>
@@ -58,7 +56,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<p>
 		<span>Register!</span>  
 		
-		Enter your information on the form to become a new user.
+		Enter your information on this form to become a new user.
 	</p>
 	<p>
 		<span>Already registered? </span> 
@@ -72,8 +70,8 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class ="g612">
 
 
-
-<p>Add a new user account:</p>
+<fieldset>
+<legend>Add a new user account:</legend>
 
 <form method="post">
 <p>Username:
@@ -85,7 +83,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	echo 'value="' .htmlentities($_POST['password']) .'"';
 	?>></p>
 <p><input type="submit" value="Submit"/>
-<a href="index.php">Cancel</a></p>
+<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'upload.php' " /> 
 </form>
 
 </div >
