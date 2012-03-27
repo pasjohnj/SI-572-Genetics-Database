@@ -68,7 +68,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- END STUFF ON THE LEFT-->
 
 <!--LOGOUT MESSAGE FORM-->
-
+<div class="g612">
 <p>Logged out...</p>
 <p><a href="login.php">Login Again</a></p>
 </div >
