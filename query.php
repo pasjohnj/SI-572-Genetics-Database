@@ -34,6 +34,15 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class="page">
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
 	<div class="g918">	
+	<div class="secondaryNav">
+	<?php if ($_SESSION['username'])
+	{
+	echo "<p> Logged in as: ";
+	echo(htmlentities($_SESSION['username']));
+	echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"logout.php\">Logout</a></p>";
+	}
+	?>
+	</div>
 	<div class="top">
 	<div id ="name"><a href="index.php"><span>Home</span></a></div>
 	<h1> CardioGeniDB</h1>	
@@ -41,11 +50,6 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
 	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
-	<?php if ($_SESSION['username'])
-	{
-	echo "<p> <a href=\"logout.php\">Logout</a></p>";
-	}
-	?>
 	</ul>
 	</div>
 	</div>
@@ -55,10 +59,12 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
 
-
+	<div class="g306"></div>
 <!-- BEGIN STUFF ON RIGHT-->
-	<div class ="g612">
 
+	<div class ="g612">
+<fieldset>
+<legend>Query</legend>
 <p>Query data from the current database using one or more of the following fields:</p>
 
 <form method="post">
@@ -70,10 +76,13 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <input type="text" name="pos_hg18"
 	value= "<?php echo htmlentities($_POST['pos_hg18']);?>" > </p>
 <p><input type="submit" value="Submit">
-<a href="index.php">Cancel</a></p>
-</form>
+<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
 
+</p>
+</form>
+</fieldset>
 </div >
+</div>
 	<div class="clear">&nbsp;</div>
 	
 <?php
