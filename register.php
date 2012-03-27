@@ -70,8 +70,8 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class ="g612">
 
 
-
-<p>Add a new user account:</p>
+<fieldset>
+<legend>Add a new user account:</legend>
 
 <form method="post">
 <p>Username:
@@ -83,7 +83,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	echo 'value="' .htmlentities($_POST['password']) .'"';
 	?>></p>
 <p><input type="submit" value="Submit"/>
-<a href="index.php">Cancel</a></p>
+<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'upload.php' " /> 
 </form>
 
 </div >
