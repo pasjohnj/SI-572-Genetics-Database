@@ -111,7 +111,7 @@ Data currently available on CardioGeni are from the following references: </br> 
 	<p> 
 	Amelia Mowry</br> Ellen Schmidt</br> John Pas</br> Kelly Grossmann
 	</p>
-	<p align="right"> Last Updated 3/13/2012 </p>
+	<p align="right"> Last Updated 3/27/2012 </p>
 	</div>	
 
 	<div class="clear">&nbsp;</div>
