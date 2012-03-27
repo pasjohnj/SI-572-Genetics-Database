@@ -2,7 +2,7 @@
 require_once "db.php";
 session_start();
 
-if (  isset($_POST['username']) && isset($_POST['password'])) {
+/*if (  isset($_POST['username']) && isset($_POST['password'])) {
 	echo 'something';
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
@@ -16,7 +16,7 @@ if (  isset($_POST['username']) && isset($_POST['password'])) {
 if (!($_SESSION['username']))
 	{
 	header("Location: login.php");
-	}
+	}*/
 ?>
 
 <html>
@@ -86,19 +86,49 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN UPLOAD STUFF -->
 
 <div class="upload">
-<p>Upload your data.  <big>DO IT.</big></p>
-
-<form method="post">
-<p>Please paste properly-formatted .csv file:</p>
-<p>
-<textarea name="username" cols="150" rows="50">
-</textarea>
-<!--<input type="submit" name="username" <?php 
-	echo 'value="' .htmlentities($_POST['username']) .'"';
-	?>></p>-->
-<p><input type="submit" value="Upload"/>
-<a href="index.php">Cancel</a></p>
-</form>
+<?php
+/*Necessary to ensure proper upload into the database of variously formatted csv
+files -pasj*/
+ini_set("auto_detect_line_endings", true);
+//Upload File
+if (isset($_POST['submit'])) {
+	if (is_uploaded_file($_FILES['filename']['tmp_name'])) {
+		echo "<h1>" . "File ". $_FILES['filename']['name'] ." uploaded successfully." . "</h1>";
+		/*The below displays the contents of the file, probably should not
+		be kept, especially if the files are huge -pasj*/
+		echo "<h2>Displaying contents:</h2>";
+		readfile($_FILES['filename']['tmp_name']);
+	}
+ 
+	//Import uploaded file to Database
+	$handle = fopen($_FILES['filename']['tmp_name'], "r");
+ 
+	while (($data = fgetcsv($handle, 49, ",")) !== FALSE) {
+		$import="INSERT into lol(MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,pval_GC_DBP) values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]')";
+ 
+		mysql_query($import) or die(mysql_error());
+	}
+ 
+	fclose($handle);
+ 
+	print "<p>Import done</p>";
+ 
+	//view upload form
+}else {
+ 
+	print "<p>Upload your data.  <big>DO IT.</big></p>";
+ 
+	print "<form enctype='multipart/form-data' action='upload.php' method='post'>";
+ 
+	print "<p>File name to import:</p>";
+ 
+	print "<input size='50' type='file' name='filename'><br />\n";
+ 
+	print "<input type='submit' name='submit' value='Upload'></form>";
+ 
+}
+ 
+?>
 </div>
 
 <!-- END UPLOAD STUFF -->
