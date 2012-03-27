@@ -9,6 +9,14 @@ USE project;
 DROP USER 'CardioGeni'@'localhost';
 GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
 
+-- Create INFO table
+CREATE TABLE INFO (
+chr INTEGER,
+pos_hg18 INTEGER,
+pos_hg19 INTEGER,
+MarkerName VARCHAR(128)
+);
+
 -- Create BMI table
 CREATE TABLE BMI (
 MarkerName VARCHAR(128),
@@ -72,8 +80,9 @@ password VARCHAR(128)
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by=" " --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/BMI.txt
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="," --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/ICBP.csv
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/FastingGlucose.txt
+/Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/info.txt
 
--- Enter database
+-- Re-enter database
 USE project; 
 
 -- Create user
@@ -81,6 +90,7 @@ DROP USER 'CardioGeni'@'localhost';
 GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
 
 -- Create integer primary keys for each data table
+alter table INFO add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
 alter table BMI add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
 alter table ICBP add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
 alter table FastingGlucose add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
