@@ -62,20 +62,21 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN STUFF ON THE LEFT-->
 	<div class = "g306">
 	<p>
-		<span>Upload!</span>  
+		<span>Log in!</span>  </br>
 		Enter your data information on the form.
 	</p>
 	<p>
-		<span>Need help?</span> 
-		Try something else...
+		<span>Not registered?</span> 
+		</br>Register <a href="register.php">here.</a>
 	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
 <!-- END STUFF ON THE LEFT-->
 
 <!--LOGIN FORM-->
-<div="g612">
-<p>Please log in!</p>
+<div class= "g612">
+<fieldset>
+<legend>Please log in!</legend>
 <p>Log in here or <a href="register.php">register </a> to upload a dataset.</p>
 <form method="post">
 <p>Username:
@@ -85,6 +86,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <p><input type="submit" value="Login"/>
 <a href="login.php">Refresh</a></p>
 </form>
+</fieldset>
 </div >
 	<div class="clear">&nbsp;</div>
 
