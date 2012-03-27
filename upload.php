@@ -2,6 +2,16 @@
 require_once "db.php";
 session_start();
 
+/*Still to add:
+-ability to strip away first line if it lists tab headings
+-reject a file if it's not properly formatted
+-add ability to upload files formatted for BMI and glucose
+-reject a file if it's not properly formatted
+-a better upload successful message: maybe give you go home/upload again/query
+-Sync with the metadata stuff, make sure there are catches for required stuff
+-pasj
+*/
+
 /*if (  isset($_POST['username']) && isset($_POST['password'])) {
 	echo 'something';
 	$username = mysql_real_escape_string($_POST['username']);
