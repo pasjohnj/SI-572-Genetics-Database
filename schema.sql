@@ -14,7 +14,10 @@ CREATE TABLE INFO (
 chr INTEGER,
 pos_hg18 INTEGER,
 pos_hg19 INTEGER,
-MarkerName VARCHAR(128)
+MarkerName VARCHAR(128),
+INDEX pos_hg18_IDX (pos_hg18),
+INDEX pos_hg19_IDX (pos_hg19),
+INDEX MarkerName_IDX (MarkerName)
 );
 
 -- Create BMI table
