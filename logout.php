@@ -3,7 +3,7 @@ session_start();
 unset($_SESSION['username']);
 ?>
 
-
+<html>
 <head>
 <!-- main style sheet -->
 <link href = "style.css" media= "screen" rel="stylesheet" />
@@ -128,5 +128,6 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 </div >
 
 </body>
+</html>
 
 	
