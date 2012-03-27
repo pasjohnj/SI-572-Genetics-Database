@@ -60,12 +60,8 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN STUFF ON THE LEFT-->
 	<div class = "g306">
 	<p>
-		<span>Upload!</span>  
-		Enter your data information on the form.
-	</p>
-	<p>
 		<span>Need help?</span> 
-		Try something else...
+		Return to the CardioGeni <a href="index.php" >homepage</a>.
 	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
