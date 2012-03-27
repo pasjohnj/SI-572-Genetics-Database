@@ -36,8 +36,18 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <div class="main">
 	<div class="page">
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
-	<div class="g918">	
+	<div class="g918">
+	<div class="secondaryNav">
+	<?php if ($_SESSION['username'])
+	{
+	echo "<p> Logged in as: ";
+	echo(htmlentities($_SESSION['username']));
+	echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"logout.php\">Logout</a></p>";
+	}
+	?>
+	</div>
 	<div class="top">
+	
 	<div id ="name"><a href="index.php"><span>Home</span></a></div>
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
