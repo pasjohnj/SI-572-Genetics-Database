@@ -16,7 +16,11 @@ Learn more ~ http://www.gridsystemgenerator.com/
 	margin-left: auto;
 	margin-right: auto;
 	width: 958px;
-	
+}
+
+	.main
+{
+box-shadow: 10px 10px 20px 5px  black;
 }
 
 /* =Grid >> Global
@@ -161,12 +165,15 @@ visibility: hidden;
 .top {
 background-image: url('./images/line.png');
 background-repeat: repeat-x;
-top: 100px;
+top: 110px;
 margin-left: -20px;
 position: relative;
 z-index: 1;
 }
 
+.secondaryNav {
+float: right;
+}
 
 .g918 {
 padding-bottom: 50px;
@@ -216,7 +223,7 @@ font-weight: bold;
 line-height: 34px;
 }
 
-p {
+p , table{
 color: #493B3B;
     font-family: 'ArialMT','Arial','sans-serif';
     font-size: 15px;
@@ -236,7 +243,7 @@ color: #493B3B;
 }
 
 input {
-border: 1px solid black;
+/*border: 1px solid black;*/
 z-index: 100;
 }
 
@@ -263,10 +270,10 @@ list-style-type: none;
 } 
 #tabmenu a, a.active { 
 color: #515880; 
-background: #FBE8FF; 
+background: #F2F4FF; 
 font: bold 18px Trebuchet MS, Arial, sans-serif; 
 /*border: 1px solid black; */
-border: 1px solid #A59EBE; 
+/*border: 1px solid #A59EBE; */
 padding:  5px 35px 10px 40px; 
 margin-left: 20px; 
 text-decoration: none; 
@@ -276,8 +283,7 @@ cursor:hand;
 background: #515880; 
 color: white;
 padding:  5px 35px 15px 40px; 
-
-border: none;
+/*border: none;*/
 } 
 #tabmenu a:hover { 
 color: #fff; 
@@ -294,7 +300,7 @@ color: #DEDECF;
 font: 0.9em/1.3em verdana, sans-serif; 
 text-align: justify; 
 background: #ffffff; 
-border: 1px solid black; 
+/*border: 1px solid black; */
 border-bottom: none; 
 z-index: 2; 
 } 
@@ -306,4 +312,13 @@ color: white;
 background: #aaaaaa; 
 }
 
-
+table.form_table {
+background: none;
+text-align: right;
+}
+fieldset {
+font-weight: bold;
+background: #F2F4FF;
+margin-bottom: 50px;
+border: none;
+}
