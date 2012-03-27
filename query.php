@@ -1,16 +1,6 @@
 <?php
 require_once "db.php";
 session_start();
-if ( isset($_SESSION['error']) ) {
-    echo '<p style="color:red">'.$_SESSION['error']."</p>\n";
-    unset($_SESSION['error']);
-}
-if ( isset($_SESSION['success']) ) {
-    echo '<p style="color:green">'.$_SESSION['success']."</p>\n";
-    unset($_SESSION['success']);
-}
-
-
 ?>
 
 
@@ -72,9 +62,37 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <input type="text" 
        name="MarkerName" 
        value="<?php echo htmlentities($_POST['MarkerName']);?>" > </p>
+<p>Chromosome:
+<select name="chr">
+	<option value="<?php echo htmlentities($_POST['chr']);?>">1</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">2</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">3</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">4</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">5</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">6</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">7</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">8</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">9</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">10</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">11</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">12</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">13</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">14</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">15</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">16</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">17</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">18</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">19</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">20</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">21</option>
+	<option value="<?php echo htmlentities($_POST['chr']);?>">22</option>
+</select> </p>
 <p>Position (hg18):
 <input type="text" name="pos_hg18"
 	value= "<?php echo htmlentities($_POST['pos_hg18']);?>" > </p>
+<p>Position (hg19):
+	<input type="text" name="pos_hg19"
+	value= "<?php echo htmlentities($_POST['pos_hg19']);?>" > </p>
 <p><input type="submit" value="Submit">
 <input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
 
@@ -86,28 +104,32 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class="clear">&nbsp;</div>
 	
 <?php
-if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18'])) {
-	echo "<!--\n$sql\n-->\n";
+if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18']) && isset($_POST['pos_hg19']) && isset($_POST['chr'])) {
 	$markername = mysql_real_escape_string($_POST['MarkerName']);
-	$position = mysql_real_escape_string($_POST['pos_hg18']);
+	$pos_hg18 = mysql_real_escape_string($_POST['pos_hg18']);
+	$pos_hg19 = mysql_real_escape_string($_POST['pos_hg19']);
+	$chr = mysql_real_escape_string($_POST['chr']);
 	$sql = 
-	"SELECT MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,trait,First_author,Journal,pub_year,title,ICBP.PMID
-	FROM ICBP, Publications
-	WHERE ICBP.PMID = Publications.PMID AND (MarkerName='$markername' OR pos_hg18='$position')";
+	"SELECT chr, INFO.pos_hg18, INFO.pos_hg19, INFO.MarkerName,
+		BMI.p,trait,First_author,Journal,pub_year,title,Publications.PMID
+		FROM INFO, BMI, Publications
+		WHERE BMI.PMID = Publications.PMID AND
+		BMI.MarkerName = INFO.MarkerName AND
+		(INFO.chr= '$chr' OR INFO.pos_hg18 = '$pos_hg18' OR INFO.pos_hg19 = '$pos_hg19' OR INFO.MarkerName = '$markername')";
 	echo '<table  border="1"> <br> 
 <tr>
-	<th>MarkerName</th>
 	<th>Chr</th>
 	<th>Position (hg18)</th>
+	<th>Position (hg19)</th>
+	<th>MarkerName</th>
 	<th>Association P-value</th>
 	<th>Trait</th>
 	<th>First Author</th>
 	<th>Journal</th>
 	<th>Publication Year</th>
-	<th>Title</th>
+	<th>Publication Title</th>
 	<th>PMID</th>
 </tr>'."\n";
-
 $result = mysql_query($sql);
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
@@ -130,26 +152,12 @@ while ( $row = mysql_fetch_row($result) ) {
     echo(htmlentities($row[8]));
     echo("</td><td>");
     echo(htmlentities($row[9]));
+    echo("</td><td>");
+    echo(htmlentities($row[10]));
     echo("</td></tr>");
     }	
 }
 ?>	
-	
-<!-- BEGIN BOTTOM SECTION
-	<div class="g918">
-	<div id="line"></div>
-	<p> 
-	Amelia </br> Ellen </br> John </br> Kelly
-	</p>
-	</div>	
-
-
-
-	<div class="clear">&nbsp;</div>
-	
-
-	</div>
-	END BOTTOM SECTION-->
 
 	
 	</div> 
