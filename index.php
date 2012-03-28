@@ -85,9 +85,9 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class ="g612">
 
 
-
-<p>Welcome to CardioGeniDB!</p>
-
+<fieldset>
+<legend>Welcome to CardioGeniDB!</legend>
+<br>
 <p>CardioGeni is a database of publicly available results from genome-wide association studies (GWAS) involving
 traits related to cardiovascular disease and metabolic disorders such as blood pressure, body mass index, and type II diabetes.</p>
 
@@ -95,7 +95,7 @@ traits related to cardiovascular disease and metabolic disorders such as blood p
 
 </div >
 	<div class="clear">&nbsp;</div>
-
+</fieldset>
 
 <!-- BEGIN BOTTOM SECTION-->
 	<div class="g918">
