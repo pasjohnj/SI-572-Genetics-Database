@@ -102,7 +102,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 		If you are not yet a member, register <a href="register.php">here</a>. 
 	</p>
 	<p>
-		Add to the database. Submit publication information and upload association study results files with a 
+		In order to add to the database, upload association study results files with a 
 		maximum size limit of 20Mb. This allows for a gzipped text table including key columns 
 		(marker name, p-value, standard error, effect size, and sample size) 
 		for up to ~3 million SNPs.</p><p>
@@ -194,7 +194,7 @@ if (isset($_POST['submit'])) {
 <tr>
     <td>
 		<label>First Author's Last Name, First Initials:</br>(Example: 
-		Speliotes, EK for EK Speliotes)</label>  
+		Mendel, GR for GR Mendel)</label>  
     </td>
     <td>
         <input type="text" name="First_author" <?php 
