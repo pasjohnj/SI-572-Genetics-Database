@@ -151,8 +151,8 @@ if (isset($_POST['submit'])) {
 	//Import uploaded file to Database
 	$handle = fopen($_FILES['filename']['tmp_name'], "r");
  
-	while (($data = fgetcsv($handle, 49, ",")) !== FALSE) {
-		$import="INSERT into lol(MarkerName,chr_hg18,pos_hg18,pval_GC_SBP,pval_GC_DBP) values('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]')";
+	while (($data = fgetcsv($handle, 49, "\t")) !== FALSE) {
+		$import="INSERT into results (MarkerName,p,PMID) values('$data[0]','$data[1]','$data[2]')";
  
 		mysql_query($import) or die(mysql_error());
 	}
