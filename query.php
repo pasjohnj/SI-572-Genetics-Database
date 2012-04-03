@@ -48,8 +48,17 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
+	<!-- BEGIN STUFF ON THE LEFT-->
+	<div class = "g306">
+	<p>
+		<span>Query GWAS data </span>  
+		</br>Use the provided fields to query the existing database for your variant of interest. 
+	</p>
+	
+	<div class="clear">&nbsp;</div>
+	</div>
+<!-- END STUFF ON THE LEFT-->
 
-	<div class="g306"></div>
 <!-- BEGIN STUFF ON RIGHT-->
 
 	<div class ="g612">
@@ -161,6 +170,7 @@ while ( $row = mysql_fetch_row($result) ) {
 
 	
 	</div> 
+	
 <!-- end page content -->
 
 			
