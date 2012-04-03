@@ -132,7 +132,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 <fieldset>
 <legend>Upload Data File</legend>
-<p><label for "username">Please paste properly-formatted .csv file:
+<p><label for "username">Please upload properly-formatted tab-delimited file with columns:<br> MarkerName, Pvalue, and Pubmed ID (no header):
 </br>
 <?php
 /*Necessary to ensure proper upload into the database of variously formatted csv
