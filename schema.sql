@@ -15,6 +15,7 @@ chr INTEGER,
 pos_hg18 INTEGER,
 pos_hg19 INTEGER,
 MarkerName VARCHAR(128),
+INDEX chr_IDX (chr),
 INDEX pos_hg18_IDX (pos_hg18),
 INDEX pos_hg19_IDX (pos_hg19),
 INDEX MarkerName_IDX (MarkerName)
@@ -87,10 +88,6 @@ password VARCHAR(128)
 
 -- Re-enter database
 USE project; 
-
--- Create user
-DROP USER 'CardioGeni'@'localhost';
-GRANT ALL ON project.* TO 'CardioGeni'@'localhost' IDENTIFIED BY 'zap'; 
 
 -- Create integer primary keys for each data table
 alter table INFO add column id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;

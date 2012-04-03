@@ -85,9 +85,9 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class ="g612">
 
 
-
-<p>Welcome to CardioGeniDB!</p>
-
+<fieldset>
+<legend>Welcome to CardioGeniDB!</legend>
+<br>
 <p>CardioGeni is a database of publicly available results from genome-wide association studies (GWAS) involving
 traits related to cardiovascular disease and metabolic disorders such as blood pressure, body mass index, and type II diabetes.</p>
 
@@ -95,33 +95,29 @@ traits related to cardiovascular disease and metabolic disorders such as blood p
 
 </div >
 	<div class="clear">&nbsp;</div>
-
+</fieldset>
 
 <!-- BEGIN BOTTOM SECTION-->
 	<div class="g918">
-	<div id="line"></div> 
+	<div id="line"></div> <br> </br>
+	<fieldset>
 	<p> 
 	</br>
-Data currently available on CardioGeni are from the following references: </br> </br>
-(i) Dupuis J et al, New genetic loci implicated in fasting glucose homeostasis and their impact on type 2 diabetes risk. Nat Genet. 2010;42:105-16, for data from the meta-analysis results for fasting glucose, fasting insulin, HOMA-IR and HOMA-B.</br>
-
-(ii) Saxena R et al, Genetic variation in GIPR influences the glucose and insulin responses to an oral glucose challenge. Nat Genet. 2010:42:142-8 for data from the 2hr glucose GWAS.</br>
-
-(iii) Soranzo N et al, Common variants at 10 genomic loci influence hemoglobin A1(C) levels via glycemic and nonglycemic pathways. Diabetes 2010: 59;12;3229-39 for HbA1c data. </br>
-
-(iv) Strawbridge R et al, Genome-wide association identifies nine common variants associated with fasting proinsulin levels and provides new insights into the pathophysiology of type 2 diabetes for proinsulin data. Diabetes2011; 60;10;2624-2634 for proinsulin data.</br>
-
-(v) Speliotes, E.K., Willer, C.J., Berndt, S.I., Monda, K.L., Thorleifsson, G., Jackson, A.U., Allen, H.L., Lindgren, C.M., Luan, J., Magi, R., et al. (2010). Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index. Nat Genet 42, 937-948.</br>
-
-(vi) International Consortium for Blood Pressure Genome-Wide Association Studies et al. (2011) Genetic variants in novel pathways influence blood pressure and cardiovascular disease risk. Nature 478, 103-109.</p>
+There are currently three GWAS datasets on CardioGeni. These data are from the following references: </br> </br>
+Fasting Glucose:<br>
+(i) Saxena R et al. (2010) Genetic variation in GIPR influences the glucose and insulin responses to an oral glucose challenge. Nat Genet 42, 142-8.</br><br>
+Body Mass Index:<br>
+(ii) Speliotes, E.K., Willer, C.J., Berndt, S.I., Monda, K.L., Thorleifsson, G., Jackson, A.U., Allen, H.L., Lindgren, C.M., Luan, J., Magi, R., et al. (2010). Association analyses of 249,796 individuals reveal 18 new loci associated with body mass index. Nat Genet 42, 937-948.</br><br>
+Blood Pressure:<br>
+(iii) International Consortium for Blood Pressure Genome-Wide Association Studies et al. (2011) Genetic variants in novel pathways influence blood pressure and cardiovascular disease risk. Nature 478, 103-109.</p>
 
 <p> Data on glycaemic traits have been contributed by MAGIC investigators and have been downloaded from www.magicinvestigators.org </p>
-
+</fieldset>
 <div id="line"></div>
 	<p> 
 	Amelia Mowry</br> Ellen Schmidt</br> John Pas</br> Kelly Grossmann
 	</p>
-	<p align="right"> Last Updated 3/27/2012 </p>
+	<p align="right"> Last Updated 4/3/2012 </p>
 	</div>	
 
 	<div class="clear">&nbsp;</div>

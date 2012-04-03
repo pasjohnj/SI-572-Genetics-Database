@@ -2,21 +2,19 @@
 require_once "db.php";
 session_start();
 
-if (  isset($_POST['PMID']) && isset($_POST['First_author'])) {
-	echo 'something';
-	$PMID = mysql_real_escape_string($_POST['PMID']);
-	$First_author = mysql_real_escape_string($_POST['First_author']);
-	$journal = mysql_real_escape_string($_POST['journal']);
-	$pub_year = mysql_real_escape_string($_POST['pub_year']);
-	$title = mysql_real_escape_string($_POST['title']);
-	$trait = mysql_real_escape_string($_POST['trait']);
-	$sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
-	mysql_query($sql);
-	echo 'blah';
-	$_SESSION['success'] = 'Publication Added';
-
-	return;
-	}
+if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['journal']) && isset($_POST['pub_year'])
+               && isset($_POST['title']) && isset($_POST['trait'])) {
+       $PMID = mysql_real_escape_string($_POST['PMID']);
+       $First_author = mysql_real_escape_string($_POST['First_author']);
+       $journal = mysql_real_escape_string($_POST['journal']);
+       $pub_year = mysql_real_escape_string($_POST['pub_year']);
+       $title = mysql_real_escape_string($_POST['title']);
+       $trait = mysql_real_escape_string($_POST['trait']);
+       $sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
+       mysql_query($sql);
+       $_SESSION['success'] = 'Publication Added';
+       /*return;*/
+       }
 
 
 
@@ -104,7 +102,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 		If you are not yet a member, register <a href="register.php">here</a>. 
 	</p>
 	<p>
-		Add to the database. Submit publication information and upload association study results files with a 
+		In order to add to the database, upload association study results files with a 
 		maximum size limit of 20Mb. This allows for a gzipped text table including key columns 
 		(marker name, p-value, standard error, effect size, and sample size) 
 		for up to ~3 million SNPs.</p><p>
@@ -146,8 +144,8 @@ if (isset($_POST['submit'])) {
 		echo "<h1>" . "File ". $_FILES['filename']['name'] ." uploaded successfully." . "</h1>";
 		/*The below displays the contents of the file, probably should not
 		be kept, especially if the files are huge -pasj*/
-		echo "<h2>Displaying contents:</h2>";
-		/*readfile($_FILES['filename']['tmp_name']);*/
+		/*echo "<h2>Displaying contents:</h2>";
+		readfile($_FILES['filename']['tmp_name']);*/
 	}
  
 	//Import uploaded file to Database
@@ -183,45 +181,73 @@ if (isset($_POST['submit'])) {
 		<fieldset>
 		<legend>Publication Information</legend>
 <table class="form_table">
-<tr><td>
-		<label for "PMID">Pubmed ID:
-</td><td>
+<tr>
+    <td>
+		<label>Pubmed ID:</label>
+    </td>
+    <td>
 		<input type="text" name="PMID" <?php 
-	echo 'value="' .htmlentities($_POST['PMID']) .'"';
-	?>></label>
-</td><tr><td>
-		<label for "First_author">First Author's Last Name, First Initials:</br>(Example: Speliotes, EK for EK Speliotes)  
-</td><td>
-<input type="text" name="First_author" <?php 
-	echo 'value="' .htmlentities($_POST['First_author']) .'"';
-	?>>
-		</label>
-</td></tr><tr><td>
-		<label for "journal">Journal:
-</td><td>
+	   echo 'value="' .htmlentities($_POST['PMID']) .'"';
+	   ?>>
+	</td>
+</tr>
+<tr>
+    <td>
+		<label>First Author's Last Name, First Initials:</br>(Example: 
+		Mendel, GR for GR Mendel)</label>  
+    </td>
+    <td>
+        <input type="text" name="First_author" <?php 
+	    echo 'value="' .htmlentities($_POST['First_author']) .'"';
+	    ?>>
+	</td>
+</tr>
+<tr>
+    <td>
+		<label>Journal:</label>
+    </td>
+    <td>
 		<input type="text" name="journal" <?php 
-	echo 'value="' .htmlentities($_POST['journal']) .'"';
-	?>></label>
-</td></tr><tr><td>
-		<label for "pub_year">Year of publication: 
-</td><td>
-		<input type="text" name="pub_year" <?php 
-	echo 'value="' .htmlentities($_POST['pub_year']) .'"';
-	?>></label>
-</td></tr><tr><td>
-		<label for "trait">Trait: 
-</td><td>
+	    echo 'value="' .htmlentities($_POST['journal']) .'"';
+	    ?>>
+    </td>
+</tr>
+<tr>
+    <td>
+		<label>Year of publication:</label> 
+    </td>
+    <td>
+        <input type="text" name="pub_year" <?php 
+	    echo 'value="' .htmlentities($_POST['pub_year']) .'"';
+    	?>>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label>Title:</label> 
+    </td>
+    <td>
+		<input type="text" name="title" <?php 
+	    echo 'value="' .htmlentities($_POST['title']) .'"';
+	    ?>>
+    </td>
+</tr>
+<tr>
+    <td>
+		<label>Trait:</label> 
+    </td>
+    <td>
 		<input type="text" name="trait" <?php 
-	echo 'value="' .htmlentities($_POST['trait']) .'"';
-	?>> </label>
-</td>
+	    echo 'value="' .htmlentities($_POST['trait']) .'"';
+	    ?>> 
+    </td>
 </tr>
 </table>
 
 </fieldset>
 
 </div>
-<input type="submit" value="Upload" />
+<input type="submit" name="submit" value="submit" />
 <input type="button" name="Cancel" value="Cancel" onclick="window.location = 'upload.php' " /> 
 </form>
 </div>
