@@ -73,7 +73,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<option value="BP">BP</option>
 	<option value="Fasting Glucose">Fasting Glucose</option>
 	<option value="Fasting Proinsulin">Fasting Proinsulin</option>
-	</select> <br> *Note: Trait is a required field</p>
+	</select> </p>
 	<!--<input type="text" name="trait"
 	value= "<?php echo htmlentities($_POST['trait']);?>" > </p>-->
 <p>MarkerName (rsID):
