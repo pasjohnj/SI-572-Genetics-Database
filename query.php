@@ -48,14 +48,17 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
-	<!-- BEGIN STUFF ON THE LEFT-->
+<!-- BEGIN STUFF ON THE LEFT-->
 	<div class = "g306">
 	<p>
 		<span>Query GWAS data </span>  
 		</br>Query for your variant of interest from the current database using the following fields.
 		First select a trait, and then fill in one or more of the following fields to narrow your search to a single genetic variant.
-	</p>
+	</p><p>
+	<span>Example query: </span><br>
+	rs13107325 is a SNP in the gene SLC39A8. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07).
 	
+	</p>
 	<div class="clear">&nbsp;</div>
 	</div>
 <!-- END STUFF ON THE LEFT-->
