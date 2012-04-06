@@ -9,6 +9,7 @@ if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['us
 	$sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
 	mysql_query($sql);
 	$_SESSION['success'] = 'User Added';
+	$_SESSION['username'] = $row[0];
 	header( 'Location: upload.php' ) ;
 	return;
 	}
