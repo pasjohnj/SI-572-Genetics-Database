@@ -80,9 +80,13 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <p>Log in here or <a href="register.php">register </a> to upload a dataset.</p>
 <form method="post">
 <p>Username:
-<input type="text" name="username"></p>
+<input type="text" name="username"id="username" <?php 
+	echo 'value="' .htmlentities($_POST['username']) .'"';
+	?>><span id="UserNameERR" style="color:red"></span></p>
 <p>Password:
-<input type="password" name="password"></p>
+<input type="password" name="password"id="password"<?php 
+	echo 'value="' .htmlentities($_POST['password']) .'"';
+	?>><span id="PasswordERR" style="color:red"></p>
 <p><input type="submit" value="Login"/>
 <a href="login.php">Refresh</a></p>
 </form>
