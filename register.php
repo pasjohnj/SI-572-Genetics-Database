@@ -120,7 +120,7 @@ function Validate()
 <p>Password:
 <input type="password" name="password" id="password"<?php 
 	echo 'value="' .htmlentities($_POST['password']) .'"';
-	?>><span id="PasswordERR" style="color:red"></p>
+	?>><span id="PasswordERR" style="color:red"></span></p>
 <p>Email: 
 <input type="text" name="email" id="email"<?php 
 	echo 'value="' .htmlentities($_POST['email']) .'"';
