@@ -122,7 +122,31 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN UPLOAD STUFF -->
 
 <div class="upload">
+<!--This script doesn't work, and I'm not sure why-pasj-->
+<script type="text/javascript">
+<!-- JAVASCRIPT FOR FORM VALIDATION -->
+function Validate()
+{
+  var IsValid = true;
+//find a way to validate!
+  document.getElementById("PubmedERR").innerHTML = "";
+  document.getElementById("yearERR").innerHTML = "";
 
+  // Check for proper Pubmed formatting
+  if (document.getElementById("PMID").value == "") {
+    document.getElementById("PubmedERR").innerHTML = "Use Pubmed format";
+    IsValid = false;
+  }
+  // Check for proper year formatting
+  if (document.getElementById("year").value == "") {
+    document.getElementById("yearERR").innerHTML = "Please enter a year yyyy";
+    IsValid = false;
+  }	
+  
+  return IsValid;
+
+}
+</script>
 
 
 
