@@ -19,7 +19,7 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
 	}
 }
 if ( $_SESSION['username'] ) {
-   header( 'Location: upload.php');
+   header( 'Location: index.php');
    //echo('<p><a href="logout.html">Logout</a></p>'."\n");
    return;
 } 
