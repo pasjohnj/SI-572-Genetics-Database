@@ -38,11 +38,11 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
 	$_SESSION['success'] = 'User Added';
 	header( 'Location: index.html' ) ;
 	return;
-	}
+	}*/
 if (!($_SESSION['username']))
 	{
 	header("Location: login.php");
-	}*/
+	}
 ?>
 
 <html>
