@@ -52,7 +52,8 @@ INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait)
 CREATE TABLE users(
 id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
 username VARCHAR(128),
-password VARCHAR(128)
+password VARCHAR(128),
+email VARCHAR(128)
 );
 
 -- Populate Info and Results tables with GWAS data (command line)
