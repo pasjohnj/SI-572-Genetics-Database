@@ -1,10 +1,6 @@
 <?php
 require_once "db.php";
 session_start();
-if (!($_SESSION['username']))
-	{
-	header("Location: login.php");
-	}
 
 if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['journal']) && isset($_POST['pub_year'])
                && isset($_POST['title']) && isset($_POST['trait'])) {
@@ -14,11 +10,19 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
        $pub_year = mysql_real_escape_string($_POST['pub_year']);
        $title = mysql_real_escape_string($_POST['title']);
        $trait = mysql_real_escape_string($_POST['trait']);
+       if (!empty($PMID) && !empty($First_author) && !empty($journal) && !empty($pub_year) && !empty($title) 
+       && is_numeric($pub_year) && is_numeric($PMID)) {
        $sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
        mysql_query($sql);
-       $_SESSION['success'];
-       header( 'Location: success.php' );       
+       $_SESSION['success'] = 'Publication Added';
+       header( 'Location: upload.php' ) ;
+       return;
        }
+$_SESSION['error'] = 'Error: Valid publication information is required in all fields';
+   header( 'Location: upload.php' ) ;
+   return;
+        
+}
 
 
 /*Still to add:
@@ -30,7 +34,24 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
 -Sync with the metadata stuff, make sure there are catches for required stuff
 -pasj
 */
+
+/*if (  isset($_POST['username']) && isset($_POST['password'])) {
+	echo 'something';
+	$username = mysql_real_escape_string($_POST['username']);
+	$password = mysql_real_escape_string($_POST['password']);
+	$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+	mysql_query($sql);
+	echo 'blah';
+	$_SESSION['success'] = 'User Added';
+	header( 'Location: index.html' ) ;
+	return;
+	}*/
+if (!($_SESSION['username']))
+	{
+	header("Location: login.php");
+	}
 ?>
+
 <html>
 <head>
 
@@ -104,14 +125,22 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 <!-- ADD USER STUFF ON RIGHT-->
 	<div class ="g612">
-
+<?php	
+	if ( isset($_SESSION['error']) ) {
+    echo '<p style="color:red"><big>'.$_SESSION['error']."</big></p>\n";
+    unset($_SESSION['error']);
+}
+if ( isset($_SESSION['success']) ) {
+    echo '<p style="color:green"><big>'.$_SESSION['success']."</big></p>\n";
+    unset($_SESSION['success']);
+}
+?>
 <!-- BEGIN UPLOAD STUFF -->
 
 <div class="upload">
-
 <!--This script doesn't work, and I'm not sure why-pasj-->
-<script type="text/javascript">
-<!-- JAVASCRIPT FOR FORM VALIDATION -->
+<!-- <script type="text/javascript">
+<!-- JAVASCRIPT FOR FORM VALIDATION
 function Validate()
 {
   var IsValid = true;
@@ -125,7 +154,7 @@ function Validate()
     IsValid = false;
   }
   // Check for proper year formatting
-  if (document.getElementById("year").value == "") {
+  if (document.getElementById("pub_year").value == "") {
     document.getElementById("yearERR").innerHTML = "Please enter a year yyyy";
     IsValid = false;
   }	
@@ -133,7 +162,7 @@ function Validate()
   return IsValid;
 
 }
-</script>
+</script> -->
 
 
 
@@ -157,8 +186,8 @@ if (isset($_POST['submit'])) {
 		/*echo "<h2>Displaying contents:</h2>";
 		readfile($_FILES['filename']['tmp_name']);*/
 	}
-	
-
+ 
+	//Import uploaded file to Database
 	$handle = fopen($_FILES['filename']['tmp_name'], "r");
  
 	while (($data = fgetcsv($handle, 49, "\t")) !== FALSE) {
@@ -170,8 +199,10 @@ if (isset($_POST['submit'])) {
 	fclose($handle);
  
 	print "<p>Import done</p>";
-
+ 
+	//view upload form
 }
+ 
 ?>
 
 
@@ -191,7 +222,7 @@ if (isset($_POST['submit'])) {
 <table class="form_table">
 <tr>
     <td>
-		<label>Pubmed ID:</label>
+		<label>Pubmed ID (e.g. 20935630):</label>
     </td>
     <td>
 		<input type="text" name="PMID" <?php 
@@ -222,7 +253,7 @@ if (isset($_POST['submit'])) {
 </tr>
 <tr>
     <td>
-		<label>Year of publication:</label> 
+		<label>Year of publication (yyyy):</label> 
     </td>
     <td>
         <input type="text" name="pub_year" <?php 
