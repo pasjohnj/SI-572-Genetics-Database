@@ -149,6 +149,7 @@ display: none;
 background-image: url('./images/cardioheading2.png');
 display: block;
 background-repeat: no-repeat;
+width: 400px;
 margin-top: -40px;
 left: 10px;
 top: -70px;
@@ -274,7 +275,7 @@ background: #F2F4FF;
 font: bold 18px Trebuchet MS, Arial, sans-serif; 
 /*border: 1px solid black; */
 /*border: 1px solid #A59EBE; */
-padding:  5px 35px 10px 40px; 
+padding:  5px 35px 15px 40px; 
 margin-left: 20px; 
 text-decoration: none; 
 cursor:hand; 
