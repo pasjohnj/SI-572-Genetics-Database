@@ -45,17 +45,31 @@ $_SESSION['error'] = 'Error: Valid publication information is required in all fi
 	$_SESSION['success'] = 'User Added';
 	header( 'Location: index.html' ) ;
 	return;
-	}*/
+	}
 if (!($_SESSION['username']))
 	{
 	header("Location: login.php");
-	}
+	}*/
 ?>
 
 <html>
 <head>
 
+	<?php if ($_SESSION['username'])
+	{
+	echo "<style type='text/css'>
+.formSection {display:inline;}
+.notLoggedIn {display: none;}
+</style> ";
 
+	}
+	else {
+	echo "<style type='text/css'>
+.formSection {display:none;}
+.notLoggedIn {display:inline;}
+</style> ";
+	}
+	?>
 
 <!-- main style sheet -->
 <link href = "style.css" media= "screen" rel="stylesheet" />
@@ -138,6 +152,10 @@ if ( isset($_SESSION['success']) ) {
 <!-- BEGIN UPLOAD STUFF -->
 
 <div class="upload">
+<div class="notLoggedIn">
+	<p>You must be logged in to upload files. Please <a href="login.php">log in</a> or <a href="register.php">register</a> to upload your file. </p>
+</div>
+
 <!--This script doesn't work, and I'm not sure why-pasj-->
 <!-- <script type="text/javascript">
 <!-- JAVASCRIPT FOR FORM VALIDATION
@@ -163,7 +181,7 @@ function Validate()
 
 }
 </script> -->
-
+<div class="formSection">
 
 
 <form enctype='multipart/form-data' action='upload.php' method='post'>
@@ -289,6 +307,7 @@ if (isset($_POST['submit'])) {
 <input type="submit" name="submit" value="submit" />
 <input type="button" name="Cancel" value="Cancel" onclick="window.location = 'upload.php' " /> 
 </form>
+</div>
 </div>
 
 <!-- END UPLOAD STUFF -->
