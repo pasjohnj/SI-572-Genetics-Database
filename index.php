@@ -59,11 +59,12 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	{
 	echo "<p> <span>Welcome ";
 	echo(htmlentities($_SESSION['username']));
+	echo "!";
 	}
 	?>
 	</span>
 	<p>
-		<span>Register! </span>  
+		<span>Register </span>  
 		Click here to enter your information and become a <a href="register.php" > new user</a>.
 		<!--<input type="submit" value="Register"/>
 		<a href="index.html"> Cancel</a> -->
