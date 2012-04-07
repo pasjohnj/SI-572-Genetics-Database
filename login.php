@@ -87,9 +87,8 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <input type="password" name="password"id="password"<?php 
 	echo 'value="' .htmlentities($_POST['password']) .'"';
 	?>><span id="PasswordERR" style="color:red"></p>
-<p><input type="submit" value="Login"/>
-<a href="login.php">Refresh</a></p>
-</form>
+<input type="submit" value="Login"/>
+<input type="reset" value="Clear Form"/>
 </fieldset>
 </div >
 	<div class="clear">&nbsp;</div>
