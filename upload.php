@@ -1,6 +1,10 @@
 <?php
 require_once "db.php";
 session_start();
+if (!($_SESSION['username']))
+	{
+	header("Location: login.php");
+	}
 
 if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['journal']) && isset($_POST['pub_year'])
                && isset($_POST['title']) && isset($_POST['trait'])) {
@@ -12,10 +16,9 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
        $trait = mysql_real_escape_string($_POST['trait']);
        $sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
        mysql_query($sql);
-       $_SESSION['success'] = 'Publication Added';
-       /*return;*/
+       $_SESSION['success'];
+       header( 'Location: success.php' );       
        }
-
 
 
 /*Still to add:
@@ -27,24 +30,7 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
 -Sync with the metadata stuff, make sure there are catches for required stuff
 -pasj
 */
-
-/*if (  isset($_POST['username']) && isset($_POST['password'])) {
-	echo 'something';
-	$username = mysql_real_escape_string($_POST['username']);
-	$password = mysql_real_escape_string($_POST['password']);
-	$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-	mysql_query($sql);
-	echo 'blah';
-	$_SESSION['success'] = 'User Added';
-	header( 'Location: index.html' ) ;
-	return;
-	}*/
-if (!($_SESSION['username']))
-	{
-	header("Location: login.php");
-	}
 ?>
-
 <html>
 <head>
 
@@ -122,6 +108,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- BEGIN UPLOAD STUFF -->
 
 <div class="upload">
+
 <!--This script doesn't work, and I'm not sure why-pasj-->
 <script type="text/javascript">
 <!-- JAVASCRIPT FOR FORM VALIDATION -->
@@ -150,7 +137,6 @@ function Validate()
 
 
 
-
 <form enctype='multipart/form-data' action='upload.php' method='post'>
 	<div class="fieldSet">
 
@@ -171,8 +157,8 @@ if (isset($_POST['submit'])) {
 		/*echo "<h2>Displaying contents:</h2>";
 		readfile($_FILES['filename']['tmp_name']);*/
 	}
- 
-	//Import uploaded file to Database
+	
+
 	$handle = fopen($_FILES['filename']['tmp_name'], "r");
  
 	while (($data = fgetcsv($handle, 49, "\t")) !== FALSE) {
@@ -184,10 +170,8 @@ if (isset($_POST['submit'])) {
 	fclose($handle);
  
 	print "<p>Import done</p>";
- 
-	//view upload form
+
 }
- 
 ?>
 
 
