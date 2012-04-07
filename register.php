@@ -127,8 +127,10 @@ function Validate()
 	echo 'value="' .htmlentities($_POST['email']) .'"';
 	?>><span id="EmailERR" style="color:red"></span></p>
 	
-	<p><input type="submit" value="Submit"/>
-<input type="reset" name="Cancel" value="Cancel" onclick="window.location = 'upload.php' " /> 
+	
+	<input type="submit" value="Submit"/>
+<input type="reset" name="Cancel" value="Cancel" /> 
+
 
 <!--for later: <span id="EmailERR" style="color:red"></span> -->
 </form>
