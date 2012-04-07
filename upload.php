@@ -14,7 +14,7 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
        && is_numeric($pub_year) && is_numeric($PMID)) {
        $sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
        mysql_query($sql);
-       $_SESSION['success'] = 'You've successfully uploaded your dataset. Now you can query or upload another dataset.';
+       $_SESSION['success'] = "You've successfully uploaded your dataset. Now you can <a href=\"query.php\" > query </a> or upload another dataset.";
        header( 'Location: upload.php' ) ;
        return;
        }
