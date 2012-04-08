@@ -313,13 +313,32 @@ color: white;
 background: #aaaaaa; 
 }
 
-table.form_table {
+label {
 background: none;
-text-align: right;
+float: right;
+}
+table.form_table {
+margin-left: 110px;
 }
 fieldset {
 font-weight: bold;
 background: #F2F4FF;
 margin-bottom: 50px;
 border: none;
+}
+
+.error {
+text-align: left;
+color: red;
+    font-family: 'ArialMT','Arial','sans-serif';
+    font-size: 15px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+.buttons{
+margin-left: 190px;
 }
