@@ -44,6 +44,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<ul id="tabmenu">
 	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
 	<li id ="tab2"> <a href="query.php" >Query </a></li>
+
 	</ul>
 	</div>
 	</div>
@@ -111,27 +112,56 @@ function Validate()
 </script>
 
 <fieldset>
-<legend>Add a new user account:</legend>
+<legend>Add a new user account</legend>
+
 
 <form name="MyForm" method="post" onsubmit="return Validate()">
-<p>Username:
-<input type="text" name="username" id="username" <?php 
-	echo 'value="' .htmlentities($_POST['username']) .'"';
-	?>><span id="UserNameERR" style="color:red"></span></p>
-<p>Password:
-<input type="password" name="password" id="password"<?php 
-	echo 'value="' .htmlentities($_POST['password']) .'"';
-	?>><span id="PasswordERR" style="color:red"></span></p>
-<p>Email: 
-<input type="text" name="email" id="email"<?php 
-	echo 'value="' .htmlentities($_POST['email']) .'"';
-	?>><span id="EmailERR" style="color:red"></span></p>
-	
-	
+<table class="form_table">
+<tr>
+	<td>
+		<label>Username:</label>
+	</td>
+	<td>
+		<input type="text" name="username" id="username" 
+		<?php 
+		echo 'value="' .htmlentities($_POST['username']) .'"';
+		?>>
+	</td>
+	<td>
+		<span class="error" id="UserNameERR" ></span>
+	</td>
+</tr>
+<tr>
+	<td>
+		<label>Password:</label>
+	</td>
+	<td>
+		<input type="password" name="password" id="password"
+		<?php echo 'value="' .htmlentities($_POST['password']) .'"';
+		?>>
+	</td>
+	<td >
+		<span class="error" id="PasswordERR" ></span>
+	</td>
+</tr>
+<tr>
+	<td>
+		<label>Email: </label>
+	</td>
+	<td>
+		<input type="text" name="email" id="email"
+		<?php echo 'value="' .htmlentities($_POST['email']) .'"';
+		?>>
+	</td>
+	<td>
+		<span class="error" id="EmailERR" ></span>
+	</td>
+</tr>
+</table>
+<div class="buttons">	
 	<input type="submit" value="Submit"/>
 <input type="reset" name="Cancel" value="Cancel" /> 
-
-
+</div>
 <!--for later: <span id="EmailERR" style="color:red"></span> -->
 </form>
 </fieldset>
