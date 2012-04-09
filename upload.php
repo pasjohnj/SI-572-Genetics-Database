@@ -291,9 +291,12 @@ if (isset($_POST['submit'])) {
 		<label>Trait:</label> 
     </td>
     <td>
-		<input type="text" name="trait" <?php 
-	    echo 'value="' .htmlentities($_POST['trait']) .'"';
-	    ?>> 
+		<select name="trait">
+	<option value="BMI">BMI</option>
+	<option value="BP">BP</option>
+	<option value="Fasting Glucose">Fasting Glucose</option>
+	<option value="Fasting Proinsulin">Fasting Proinsulin</option>
+	</select>  
     </td>
 </tr>
 </table>
