@@ -14,10 +14,21 @@ if (  isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['jo
        && is_numeric($pub_year) && is_numeric($PMID)) {
        $sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
        mysql_query($sql);
-       $_SESSION['success'] = "You have successfully uploaded your dataset. Now you can <a href=\"query.php\" > query </a> or upload another dataset.";
-       header( 'Location: upload.php' ) ;
-       return;
-       }
+     
+     //Import uploaded file to Database
+	$handle = fopen($_FILES['filename']['tmp_name'], "r");
+ 
+	while (($data = fgetcsv($handle, 200, "\t")) !== FALSE) {
+		$import="INSERT into results (MarkerName,p,PMID) values('$data[0]','$data[1]','$data[2]')";
+		$result=(mysql_query($import)); if (!$result) echo mysql_error();
+	}
+ 
+	fclose($handle);
+       
+$_SESSION['success'] = "You have successfully uploaded your dataset. Now you can <a href=\"query.php\" > query </a> or upload another dataset.";
+    header( 'Location: upload.php' ) ;
+    return;
+}
 $_SESSION['error'] = 'Error: Valid publication information is required in all fields';
    header( 'Location: upload.php' ) ;
    return;
@@ -204,21 +215,7 @@ if (isset($_POST['submit'])) {
 		/*echo "<h2>Displaying contents:</h2>";
 		readfile($_FILES['filename']['tmp_name']);*/
 	}
- 
-	//Import uploaded file to Database
-	$handle = fopen($_FILES['filename']['tmp_name'], "r");
- 
-	while (($data = fgetcsv($handle, 49, "\t")) !== FALSE) {
-		$import="INSERT into results (MarkerName,p,PMID) values('$data[0]','$data[1]','$data[2]')";
- 
-		mysql_query($import) or die(mysql_error());
-	}
- 
-	fclose($handle);
- 
-	print "<p>Import done</p>";
- 
-	//view upload form
+
 }
  
 ?>
