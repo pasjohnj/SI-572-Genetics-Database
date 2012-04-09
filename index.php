@@ -82,6 +82,10 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <!-- ADD USER STUFF ON RIGHT-->
 	<div class ="g612">
 
+<?php
+echo $_SESSION['success'];
+unset($_SESSION['success']);
+?>
 
 <fieldset>
 <legend>Welcome to CardioGeniDB!</legend>
