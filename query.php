@@ -67,7 +67,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 	<div class ="g612">
 <fieldset>
-<legend>Select a single variant query</legend>
+<legend>Select a single variant to query</legend>
 <br></br>
 <form method="POST">
 <p>Trait:
