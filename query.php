@@ -67,7 +67,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 	<div class ="g612">
 <fieldset>
-<legend>Query</legend>
+<legend>Select a single variant query</legend>
 <br></br>
 <form method="POST">
 <p>Trait:
@@ -115,7 +115,57 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<option value="21">21</option>
 	<option value="22">22</option>
 </select><br> *Note: Selecting chromosome will output all SNPs on that chromosome. This query may take several minutes.</p>
-<p><input type="submit" value="Submit">
+<p><input type="submit" value="Submit" name="Submit_Query1">
+<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
+</form>
+</fieldset>
+
+<fieldset>
+<legend>Select a genomic range to query</legend>
+<br></br>
+<form method="POST">
+<p>Trait:
+	<select name="trait">
+	<option value="BMI">BMI</option>
+	<option value="BP">BP</option>
+	<option value="Fasting Glucose">Fasting Glucose</option>
+	<option value="Fasting Proinsulin">Fasting Proinsulin</option>
+	</select> </p>
+<p>Position (hg18) Range:
+	<input type="text" 
+	name="pos_hg18_2"
+	value= "<?php echo htmlentities($_POST['pos_hg18_2']);?>" > 
+to
+	<input type="text" 
+	name="pos_hg18_3"
+	value= "<?php echo htmlentities($_POST['pos_hg18_3']);?>"> </p>
+		<p>Chromosome:
+<select name="chr">
+	<option value="chr">chr</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>
+	<option value="13">13</option>
+	<option value="14">14</option>
+	<option value="15">15</option>
+	<option value="16">16</option>
+	<option value="17">17</option>
+	<option value="18">18</option>
+	<option value="19">19</option>
+	<option value="20">20</option>
+	<option value="21">21</option>
+	<option value="22">22</option>
+</select>
+<p><input type="submit" value="Submit" name="Submit_Query2">
 <input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
 
 </p>
@@ -126,9 +176,11 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class="clear">&nbsp;</div>
 	
 <?php
-if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18']) && isset($_POST['pos_hg19']) && isset($_POST['chr']) && isset($_POST['trait'])) {
+if (  isset($_POST['Submit_Query1'])) {
 	$markername = mysql_real_escape_string($_POST['MarkerName']);
 	$pos_hg18 = mysql_real_escape_string($_POST['pos_hg18']);
+	$pos_hg18_2 = mysql_real_escape_string($_POST['pos_hg18_2']);
+	$pos_hg18_3 = mysql_real_escape_string($_POST['pos_hg18_3']);
 	$pos_hg19 = mysql_real_escape_string($_POST['pos_hg19']);
 	$chr = mysql_real_escape_string($_POST['chr']);
 	$trait = mysql_real_escape_string($_POST['trait']);
@@ -139,7 +191,34 @@ if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18']) && isset($_POST['
 		WHERE results.PMID = Publications.PMID AND
 		results.MarkerName = INFO.MarkerName AND trait='$trait' AND
 		(chr='$chr' OR INFO.pos_hg18 = '$pos_hg18' OR INFO.pos_hg19 = '$pos_hg19' OR INFO.MarkerName = '$markername')";
-	echo '<table  border="1"> <br> 
+}	
+if (  isset($_POST['Submit_Query2'])) {
+	$markername = mysql_real_escape_string($_POST['MarkerName']);
+	$pos_hg18 = mysql_real_escape_string($_POST['pos_hg18']);
+	$pos_hg18_2 = mysql_real_escape_string($_POST['pos_hg18_2']);
+	$pos_hg18_3 = mysql_real_escape_string($_POST['pos_hg18_3']);
+	$pos_hg19 = mysql_real_escape_string($_POST['pos_hg19']);
+	$chr = mysql_real_escape_string($_POST['chr']);
+	$trait = mysql_real_escape_string($_POST['trait']);
+	$sql = 
+	"SELECT INFO.chr, INFO.pos_hg18, INFO.pos_hg19, INFO.MarkerName,
+		results.p,trait,First_author,Journal,pub_year,title,Publications.PMID
+		FROM INFO, results, Publications
+		WHERE results.PMID = Publications.PMID AND
+		results.MarkerName = INFO.MarkerName AND 
+		trait='$trait' AND chr='$chr' AND
+		(INFO.pos_hg18 >= '$pos_hg18_2' AND INFO.pos_hg18 <= '$pos_hg18_3')";
+}
+
+if (isset($_POST['Submit_Query1']) OR isset($_POST['Submit_Query2'])){
+
+
+$result = mysql_query($sql);
+if ($num_rows = mysql_num_rows($result) == 0){
+echo "Empty query";
+}
+elseif ($num_row = mysql_num_rows($result) !=0){
+echo '<table  border="1"> <br> 
 <tr>
 	<th>Chr</th>
 	<th>Position (hg18)</th>
@@ -153,7 +232,7 @@ if (  isset($_POST['MarkerName']) && isset($_POST['pos_hg18']) && isset($_POST['
 	<th>Publication Title</th>
 	<th>PMID</th>
 </tr>'."\n";
-$result = mysql_query($sql);
+
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
     echo(htmlentities($row[0]));
@@ -178,8 +257,12 @@ while ( $row = mysql_fetch_row($result) ) {
     echo("</td><td>");
     echo(htmlentities($row[10]));
     echo("</td></tr>");
-    }	
+    }
+
 }
+}
+
+
 ?>	
 
 	
