@@ -169,6 +169,7 @@ background-image: url('./images/line.png');
 background-repeat: repeat-x;
 top: 105px;
 margin-left: -20px;
+margin-bottom: 20px;
 position: relative;
 z-index: 1;
 }
