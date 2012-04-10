@@ -10,7 +10,36 @@ session_start();
 <!-- main style sheet -->
 <link href = "style.css" media= "screen" rel="stylesheet" />
 
-<!-- some javascript we probably won't need -->
+<!-- some javascript we need -->
+		
+		<script type="text/javascript" language="javascript" src="release-datatables/media/js/jquery.js"></script>
+		<script type="text/javascript" language="javascript" src="release-datatables/media/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			/* Formatted numbers sorting */
+			$.fn.dataTableExt.oSort['formatted-num-asc'] = function(x,y){
+	 			x = parseInt( x.replace(/[^\d\-\.\/]/g,'') );
+	 			y = parseInt( y.replace(/[^\d\-\.\/]/g,'') );
+				return x - y;
+			}
+			$.fn.dataTableExt.oSort['formatted-num-desc'] = function(x,y){
+	 			x = parseInt( x.replace(/[^\d\-\.\/]/g,'') );
+	 			y = parseInt( y.replace(/[^\d\-\.\/]/g,'') );
+				return y - x;
+			}
+			
+			/* Initialisation */
+			$(document).ready(function() {
+				$('#example').dataTable( {
+					"sPaginationType": "full_numbers",
+					"aoColumnDefs": [ {
+						"sType": "formatted-num",
+						"aTargets": [1,2,3,4,5]
+					} ]
+				} );
+			} );
+		</script>
+
+
 
 <title>CardioGeni</title>
 </head>
@@ -265,7 +294,10 @@ to
 </fieldset>
 </div >
 </div>
+
 	<div class="clear">&nbsp;</div>
+
+<div class='g918'>		
 	
 <?php
 if (  isset($_POST['Submit_Query1'])) {
@@ -313,10 +345,13 @@ if (isset($_POST['Submit_Query1']) OR isset($_POST['Submit_Query2'])){
 
 $result = mysql_query($sql);
 if ($num_rows = mysql_num_rows($result) == 0){
-echo "Empty query";
+echo "Your query returned no results.	
+		<div class='clear'>&nbsp;</div>";
 }
 elseif ($num_row = mysql_num_rows($result) !=0){
-echo '<table  border="1"> <br> 
+echo "	<div id='line'></div><span>Query Results:</span><div class='clear'>&nbsp;</div>";
+echo '<table  id="example" border="0" cellpadding="0" class="pretty"> <br> 
+<thead>
 <tr>
 	<th>Chr</th>
 	<th>Position (hg18)</th>
@@ -329,7 +364,8 @@ echo '<table  border="1"> <br>
 	<th>Publication Year</th>
 	<th>Publication Title</th>
 	<th>PMID</th>
-</tr>'."\n";
+</tr>
+</thead><tbody>'."\n";
 
 while ( $row = mysql_fetch_row($result) ) {
     echo "<tr><td>";
@@ -356,14 +392,23 @@ while ( $row = mysql_fetch_row($result) ) {
     echo(htmlentities($row[10]));
     echo("</td></tr>");
     }
+    echo("</tbody>");
+    echo("</table>");
 
 }
 }
 
 
 ?>	
+	<div id='line'></div>
+</div>
 
+
+
+	<div class="clear">&nbsp;</div>
 	
+
+	</div>	
 	</div> 
 	
 <!-- end page content -->
