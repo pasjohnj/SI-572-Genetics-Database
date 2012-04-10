@@ -1,6 +1,19 @@
 <?php
 require_once "db.php";
 session_start();
+if (  isset($_POST['gene'])) {
+	$gene = mysql_real_escape_string($_POST['gene']);
+	$sql = 
+	"SELECT filename
+		FROM plots
+		WHERE gene='$gene'";
+		$result = mysql_query($sql);
+$row = mysql_fetch_row($result);	
+$filename = $row[0];
+   header( "Location: LZPlots/$filename");
+   //echo('<p><a href="logout.html">Logout</a></p>'."\n");
+   return;
+}
 ?>
 
 
@@ -291,6 +304,33 @@ to
 </div>
 
 </form>
+</fieldset>
+<fieldset>
+<legend>Select a gene for a zoomed-in view of the genomic region</legend>
+<br></br>
+<form method="POST">
+<table class="form_table">
+<tr>
+	<td>
+		<label>Gene:</label>
+	</td>
+	<td>
+		<select name="gene">
+		<option value="ATG13">ATG13</option>
+		<option value="APOA5">APOA5</option>
+		<option value="CETP">CETP</option>
+		<option value="MED1">MED1</option>
+		</select> 
+	</td>
+<td>
+</td>
+</tr>
+</table>
+<div class="buttons">
+<input type="submit" value="submit" name="submit">
+<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
+</form>
+<br></br><p>*Plots were made using <a href="http://csg.sph.umich.edu/locuszoom/">LocusZoom</a></p>
 </fieldset>
 </div >
 </div>
