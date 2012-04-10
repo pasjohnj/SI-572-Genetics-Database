@@ -30,6 +30,7 @@ box-shadow: 10px 10px 20px 5px  black;
 	float: left;
 	margin-left: 40px;
 	margin-bottom: 20px;
+	margin-top: -45px; 
 }
 
 /* =Grid >> 9 Columns
@@ -150,9 +151,9 @@ background-image: url('./images/cardioheading2.png');
 display: block;
 background-repeat: no-repeat;
 width: 400px;
-margin-top: -40px;
+margin-top: -42px;
 left: 10px;
-top: -70px;
+top: -65px;
 height: 100px;
 position: relative;
 z-index: 100;
@@ -166,7 +167,7 @@ visibility: hidden;
 .top {
 background-image: url('./images/line.png');
 background-repeat: repeat-x;
-top: 110px;
+top: 105px;
 margin-left: -20px;
 position: relative;
 z-index: 1;
@@ -178,6 +179,7 @@ float: right;
 
 .g918 {
 padding-bottom: 50px;
+margin-top: 5px;
 }
 #line {
 background-image: url('./images/line.png');
@@ -320,6 +322,11 @@ float: right;
 table.form_table {
 margin-left: 110px;
 }
+
+table.form_table_no_errors {
+margin-left: 0px;
+}
+
 fieldset {
 font-weight: bold;
 background: #F2F4FF;
