@@ -52,7 +52,7 @@ session_start();
 		First select a trait, and then fill in one or more of the following fields to narrow your search to a single genetic variant.
 	</p><p>
 	<span>Example query: </span><br>
-	rs13107325 is a SNP in the gene SLC39A8. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07).
+	rs13107325 is a SNP in the gene SLC39A8 on chromosome 4. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07).
 	
 	</p>
 	<div class="clear">&nbsp;</div>
