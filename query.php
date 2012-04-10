@@ -94,10 +94,12 @@ $filename = $row[0];
 		First select a trait, and then fill in one or more of the following fields to narrow your search to a single genetic variant.
 	</p><p>
 	<span>Example query: </span><br>
-	rs13107325 is a SNP in the gene SLC39A8 on chromosome 4. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07).
+	rs13107325 is a SNP in the gene SLC39A8 on chromosome 4. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07). 
 	</p>
 	<p>
-	You may also query for your genomic region of interest by using a range of hg18 or hg19 positions.</p>
+	You may also query for your genomic region of interest by using a range of hg18 or hg19 positions.
+	<br>Example: The hg18 genomic range of positions 103406732 to 103408732 contains rs13107325 on chromosome 4.</p>
+	<p> Check out the genomic region containing your genetic variant of interest by choosing a gene from the drop-down menu. </p>
 	<div class="clear">&nbsp;</div>
 	</div>
 <!-- END STUFF ON THE LEFT-->
