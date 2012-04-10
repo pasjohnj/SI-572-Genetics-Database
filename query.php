@@ -53,8 +53,9 @@ session_start();
 	</p><p>
 	<span>Example query: </span><br>
 	rs13107325 is a SNP in the gene SLC39A8 on chromosome 4. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07).
-	
 	</p>
+	<p>
+	You may also query for your genomic region of interest by using a range of hg18 or hg19 positions.</p>
 	<div class="clear">&nbsp;</div>
 	</div>
 <!-- END STUFF ON THE LEFT-->
@@ -207,11 +208,26 @@ to
 </td>
 </tr>
 <tr>
+<td>
+	<label>Position (hg19) Range:</label>
+</td>
+<td>
+	<input type="text" 
+	name="pos_hg19_2"
+	value= "<?php echo htmlentities($_POST['pos_hg19_2']);?>" > 
+to
+	<input type="text" 
+	name="pos_hg19_3"
+	value= "<?php echo htmlentities($_POST['pos_hg19_3']);?>"> 
+</td>
+<td>
+</td>
+</tr>
+<tr>
 <td><label>Chromosome:</label>
 </td>
 <td>
 <select name="chr">
-	<option value="chr">chr</option>
 	<option value="1">1</option>
 	<option value="2">2</option>
 	<option value="3">3</option>
@@ -274,6 +290,8 @@ if (  isset($_POST['Submit_Query2'])) {
 	$pos_hg18_2 = mysql_real_escape_string($_POST['pos_hg18_2']);
 	$pos_hg18_3 = mysql_real_escape_string($_POST['pos_hg18_3']);
 	$pos_hg19 = mysql_real_escape_string($_POST['pos_hg19']);
+	$pos_hg19_2 = mysql_real_escape_string($_POST['pos_hg19_2']);
+	$pos_hg19_3 = mysql_real_escape_string($_POST['pos_hg19_3']);
 	$chr = mysql_real_escape_string($_POST['chr']);
 	$trait = mysql_real_escape_string($_POST['trait']);
 	$sql = 
@@ -283,7 +301,11 @@ if (  isset($_POST['Submit_Query2'])) {
 		WHERE results.PMID = Publications.PMID AND
 		results.MarkerName = INFO.MarkerName AND 
 		trait='$trait' AND chr='$chr' AND
-		(INFO.pos_hg18 >= '$pos_hg18_2' AND INFO.pos_hg18 <= '$pos_hg18_3')";
+		(
+		(INFO.pos_hg18 >= '$pos_hg18_2' AND INFO.pos_hg18 <= '$pos_hg18_3')
+		OR
+		(INFO.pos_hg18 >= '$pos_hg19_2' AND INFO.pos_hg18 <= '$pos_hg19_3')
+		)";
 }
 
 if (isset($_POST['Submit_Query1']) OR isset($_POST['Submit_Query2'])){
