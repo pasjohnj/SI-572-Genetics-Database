@@ -7,11 +7,10 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
    $password = mysql_real_escape_string($_POST['password']);
    $sql = "SELECT username FROM users 
               WHERE username = '$username' AND password='$password'";
-	/*echo "<!--\n$sql\n-->\n";*/
+  /*echo "<!--\n$sql\n-->\n";*/
    $result = mysql_query($sql);
    $row = mysql_fetch_row($result);	
    if ( $row === FALSE ) {
-      echo "<p>Login incorrect.</p>\n";
       unset($_SESSION['username']);
    } 
    else { 
@@ -19,7 +18,7 @@ if ( isset($_POST['username']) && isset($_POST['password'])  ) {
 	}
 }
 if ( $_SESSION['username'] ) {
-   header( 'Location: index.php');
+   header( 'Location: upload.php');
    //echo('<p><a href="logout.html">Logout</a></p>'."\n");
    return;
 } 
@@ -35,6 +34,10 @@ if ( $_SESSION['username'] ) {
 function makeactive(tab) { document.getElementById("tab1").className = ""; document.getElementById("tab2").className = ""; document.getElementById("tab3").className = ""; document.getElementById("tab"+tab).className = "active"; 
 callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+'. Wait...', 'Error'); } 
 </script>
+
+
+
+
 <title>CardioGeni</title>
 </head>
 
@@ -48,7 +51,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<h1> CardioGeniDB</h1>	
 	<div id="navcontainer">
 	<ul id="tabmenu">
-	<li id ="tab1" > <a href="#" >Upload</a></li>
+	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
 	<li id ="tab2"> <a href="query.php" >Query </a></li>
 	</ul>
 	</div>
@@ -75,20 +78,72 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 
 <!--LOGIN FORM-->
 <div class= "g612">
+
+<script type="text/javascript">
+<!-- JAVASCRIPT FOR FORM VALIDATION -->
+function Validate()
+{
+  var IsValid = true;
+
+  document.getElementById("UserNameERR").innerHTML = "";
+  document.getElementById("PasswordERR").innerHTML = "";
+
+  // Check for a name
+  if (document.getElementById("username").value == "") {
+    document.getElementById("UserNameERR").innerHTML = "Missing name";
+    IsValid = false;
+  }
+  // Check for an address
+  if (document.getElementById("password").value == "") {
+    document.getElementById("PasswordERR").innerHTML = "Missing password";
+    IsValid = false;
+  }	
+
+
+  return IsValid;
+
+}
+
+</script>
+
+
 <fieldset>
 <legend>Please log in!</legend>
+<?php
+   if ( $row === FALSE ) {
+      echo "<span class='error'>Username or password incorrect.</span>";
+      unset($_SESSION['username']);
+   } 
+?>
 <p>Log in here or <a href="register.php">register </a> to upload a dataset.</p>
-<form method="post">
-<p>Username:
-<input type="text" name="username"id="username" <?php 
-	echo 'value="' .htmlentities($_POST['username']) .'"';
-	?>><span id="UserNameERR" style="color:red"></span></p>
-<p>Password:
-<input type="password" name="password"id="password"<?php 
-	echo 'value="' .htmlentities($_POST['password']) .'"';
-	?>><span id="PasswordERR" style="color:red"></p>
-<p><input type="submit" value="Login"/>
-<a href="login.php">Refresh</a></p>
+<form name="MyForm" method="post" onsubmit="return Validate()"> 
+<table class="form_table">
+<tr>
+<td>
+	Username:
+</td>
+<td>
+	<input type="text" name="username" id="username">
+</td>
+<td>
+	<span class="error" id="UserNameERR" ></span>
+</td>
+</tr>
+<tr>
+<td> Password:
+</td>
+<td>
+<input type="password" name="password" id="password">
+</td>
+<td>
+	<span class="error" id="PasswordERR" ></span>
+</td>
+</tr>
+</table>
+<div class="buttons">
+<input type="submit" value="Login"/>
+<input type="reset" value="Clear Form"/>
+</div>
 </form>
 </fieldset>
 </div >
