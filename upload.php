@@ -291,12 +291,12 @@ if (isset($_POST['submit'])) {
 		<label>Trait:</label> 
     </td>
     <td>
-		<select name="trait">
+	<select name="trait">
 	<option value="BMI">BMI</option>
 	<option value="BP">BP</option>
 	<option value="Fasting Glucose">Fasting Glucose</option>
 	<option value="Fasting Proinsulin">Fasting Proinsulin</option>
-	</select>  
+	</select> 
     </td>
 </tr>
 </table>
@@ -304,8 +304,10 @@ if (isset($_POST['submit'])) {
 </fieldset>
 
 </div>
+<div class="buttons">
 <input type="submit" name="submit" value="submit" />
 <input type="button" name="Cancel" value="Cancel" onclick="window.location = 'upload.php' " /> 
+</div>
 </form>
 </div>
 </div>
