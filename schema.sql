@@ -56,6 +56,24 @@ password VARCHAR(128),
 email VARCHAR(128)
 );
 
+-- Create gene plot table
+CREATE TABLE plots(
+id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
+filename VARCHAR(128),
+gene VARCHAR(128)
+);
+
+INSERT INTO plots (filename, gene)
+  VALUES ('HDL_120306_chr11_46699823.pdf', 'ATG13');
+INSERT INTO plots (filename, gene)
+  VALUES ('HDL_120306_chr11_116142356.pdf', 'APOA5');
+INSERT INTO plots (filename, gene)
+  VALUES ('HDL_120306_chr16_55545545.pdf', 'CETP');
+  INSERT INTO plots (filename, gene)
+  VALUES ('HDL_120306_chr17_35063744.pdf', 'MED1');
+INSERT INTO plots (filename, gene)
+  VALUES('BMI_rs13107325.pdf','SLC39A8');
+
 -- Populate Info and Results tables with GWAS data (command line)
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/results.txt
 /Applications/XAMPP/xamppfiles/bin/mysqlimport --user=root --password --ignore-lines=1 --fields-terminated-by="\t" --local project /Users/ellenmschmidt/Documents/SI-572-Genetics-Database/info.txt
