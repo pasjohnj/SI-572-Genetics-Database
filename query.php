@@ -320,6 +320,7 @@ to
 		<option value="APOA5">APOA5</option>
 		<option value="CETP">CETP</option>
 		<option value="MED1">MED1</option>
+		<option value="SLC39A8">SLC39A8</option>
 		</select> 
 	</td>
 <td>
