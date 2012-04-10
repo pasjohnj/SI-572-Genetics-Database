@@ -6,6 +6,22 @@ session_start();
 <html>
 <head>
 
+<?php if ($_SESSION['username'])
+	{
+	echo "<style type='text/css'>
+.formSection {display:inline;}
+.notLoggedIn {display: none;}
+</style> ";
+
+	}
+	else {
+	echo "<style type='text/css'>
+.formSection {display:none;}
+.notLoggedIn {display:inline;}
+</style> ";
+	}
+	?>
+
 
 
 <!-- main style sheet -->
@@ -63,6 +79,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	}
 	?>
 	</span>
+	<div class="notLoggedIn">
 	<p>
 		<span>Register </span>  
 		Click here to enter your information and become a <a href="register.php" > new user</a>.
@@ -75,6 +92,7 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 		<!--<input type="submit" value="Login"/>
 		<a href="index.html">Cancel</a> -->
 	</p>
+	</div>
 	<div class="clear">&nbsp;</div>
 	</div>
 <!-- END STUFF ON THE LEFT-->
