@@ -2,11 +2,12 @@
 require_once "db.php";
 session_start();
 
-if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['username'])) {
+if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['username'])  &&isset($_POST['name'])) {
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 	$email = mysql_real_escape_string($_POST['email']);
-	$sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+	$name= mysql_real_escape_string($_POST['name']);
+	$sql = "INSERT INTO users (username, password, email, name) VALUES ('$username', '$password', '$email', '$name')";
 	mysql_query($sql);
 	$_SESSION['success'] = 'User Added';
 	$_SESSION['username'] = $row[0];
@@ -81,6 +82,7 @@ function Validate()
   document.getElementById("UserNameERR").innerHTML = "";
   document.getElementById("PasswordERR").innerHTML = "";
   document.getElementById("EmailERR").innerHTML = "";
+  document.getElementById("nameERR").innerHTML="";
 
   // Check for a name
   if (document.getElementById("username").value == "") {
@@ -90,6 +92,11 @@ function Validate()
   // Check for an address
   if (document.getElementById("password").value == "") {
     document.getElementById("PasswordERR").innerHTML = "Missing password";
+    IsValid = false;
+  }	
+    // Check for an address
+  if (document.getElementById("name").value == "") {
+    document.getElementById("nameERR").innerHTML = "Missing name";
     IsValid = false;
   }	
   // Check for a valid email address
@@ -142,6 +149,19 @@ function Validate()
 	</td>
 	<td >
 		<span class="error" id="PasswordERR" ></span>
+	</td>
+</tr>
+<tr>
+	<td>
+		<label>Name: </label>
+	</td>
+	<td>
+		<input type="text" name="name" id="name"
+		<?php echo 'value="' .htmlentities($_POST['name']) .'"';
+		?>>
+	</td>
+	<td>
+		<span class="error" id="nameERR" ></span>
 	</td>
 </tr>
 <tr>
