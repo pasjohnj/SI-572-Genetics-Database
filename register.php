@@ -5,6 +5,7 @@ session_start();
 if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['username'])  &&isset($_POST['name'])) {
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
+	$confirmPassword = mysql_real_escape_string($_POST['confirmPassword']);
 	$email = mysql_real_escape_string($_POST['email']);
 	$name= mysql_real_escape_string($_POST['name']);
 	$sql = "INSERT INTO users (username, password, email, name) VALUES ('$username', '$password', '$email', '$name')";
@@ -74,6 +75,24 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class ="g612">
 
 <script type="text/javascript">
+//Check Password
+function checkPass(){
+	var password = document.getElementById('password');
+	var confirmPassword = document.getElementById('confirmPassword');	
+	var message = document.getElementById('confirmMessage');
+	var goodColor = "#66cc66";
+	var badColor = "#ff6666";
+	if (password.value == confirmPassword.value) {
+		confirmPassword.style.backgroundColor = goodColor;
+		message.style.color = goodColor;
+		message.innerHTML = "Passwords Match"
+		}
+	else {
+		confirmPassword.style.backgroundColor = badColor;
+		message.style.color = badColor;
+		message.innerHTML = "Passwords Don't Match!"
+		}
+	}
 <!-- JAVASCRIPT FOR FORM VALIDATION -->
 function Validate()
 {
@@ -140,7 +159,7 @@ function Validate()
 </tr>
 <tr>
 	<td>
-		<label>Password:</label>
+		<label for="password">Password:</label>
 	</td>
 	<td>
 		<input type="password" name="password" id="password"
@@ -149,6 +168,20 @@ function Validate()
 	</td>
 	<td >
 		<span class="error" id="PasswordERR" ></span>
+	</td>
+</tr>
+<tr>
+	<td>
+		<label for="confirmPassword">Confirm Password:</label>
+	</td>
+	<td>
+		<input type="password" name="confirmPassword" 
+		id="confirmPassword" onkeyup="checkPass(); return false;"
+		<?php echo 'value="' .htmlentities($_POST['confirmPassword']) .'"';
+		?>>
+	</td>
+	<td >
+		<span class="confirmMessage"" id="confirmMessage" ></span>
 	</td>
 </tr>
 <tr>
