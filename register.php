@@ -181,7 +181,7 @@ function Validate()
 		?>>
 	</td>
 	<td >
-		<span class="confirmMessage"" id="confirmMessage" ></span>
+		<span class="error"" id="confirmMessage" ></span>
 	</td>
 </tr>
 <tr>
