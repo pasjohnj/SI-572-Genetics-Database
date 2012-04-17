@@ -1,6 +1,76 @@
 <?php
+#Move up processing before the HTML
+#Guard upload with <?php blah blah end php.  then html then more php.  
+#This allows the html to be hidden in the php conditional
+
 require_once "db.php";
 session_start();
+
+<?php
+/*Necessary to ensure proper upload into the database of variously formatted csv
+files -pasj*/
+ini_set("auto_detect_line_endings", true);
+//This doesn't work for some reason
+//if (isset($_SESSION['username'])) 
+//{
+//Upload File 
+if (isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['journal']) && isset($_POST['pub_year'])
+               && isset($_POST['title']) && isset($_POST['trait']) && ($_POST['submit'])) 
+{
+//extra loop to keep people from logging in in disabled css -pasj
+    if ( isset($_SESSION['username'])) 
+//loop to check if a file has been uploaded
+    {
+        if ( isset($_POST['filename'])) 
+        {
+	        //Import uploaded file to Database
+	        $handle = fopen($_FILES['filename']['tmp_name'], "r");
+ 
+	        while (($data = fgetcsv($handle, 49, "\t")) !== FALSE) 
+	        {
+		        $import="INSERT into results (MarkerName,p,PMID) values('$data[0]','$data[1]','$data[2]')";
+		        mysql_query($import) or die(mysql_error());
+	        }
+            fclose($handle);
+            print "<p>Import done</p>";
+            //Add information to database
+	        $PMID = mysql_real_escape_string($_POST['PMID']);
+            $First_author = mysql_real_escape_string($_POST['First_author']);
+            $journal = mysql_real_escape_string($_POST['journal']);
+            $pub_year = mysql_real_escape_string($_POST['pub_year']);
+            $title = mysql_real_escape_string($_POST['title']);
+            $trait = mysql_real_escape_string($_POST['trait']);
+            if (!empty($PMID) && !empty($First_author) && !empty($journal) && !empty($pub_year) && !empty($title) 
+            && is_numeric($pub_year) && is_numeric($PMID)) 
+            	{
+            		$sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
+            		mysql_query($sql);
+            		$_SESSION['success'] = "You've successfully uploaded your dataset. Now you can <a href=\"query.php\" > query </a> or upload another dataset.";
+            		header( 'Location: upload.php' ) ;
+            		return;
+        		}
+		  }  
+		        
+        else 
+        {
+            echo '<p style="color:red">YOU MUST UPLOAD A FILE!</p>';
+            
+        }
+    }
+    else 
+    {
+        echo '<p style="color:red">YOU MUST BE LOGGED IN!</p>';
+    }
+}
+else {
+    echo '<p style="color:red">WRONG!</p>';
+}
+/*Session doesn't work right
+  $_SESSION['error'] = 'Error: Valid publication information is required in all fields';
+   header( 'Location: upload.php' ) ;
+   return;
+}*/
+?>
 /*Still to add:
 -ability to strip away first line if it lists tab headings
 -reject a file if it's not properly formatted
@@ -17,6 +87,7 @@ session_start();
 
 	<?php if ($_SESSION['username'])
 	{
+	//Is there a way to get this to work with the session 'error' in line 187?
 	echo "<style type='text/css'>
 .formSection {display:inline;}
 .notLoggedIn {display: none;}
@@ -125,73 +196,6 @@ if ( isset($_SESSION['success']) ) {
 <legend>Upload Data File</legend>
 <p><label for "username">Please upload properly-formatted tab-delimited file with columns:<br> MarkerName, Pvalue, and Pubmed ID (no header):
 </br>
-<?php
-/*Necessary to ensure proper upload into the database of variously formatted csv
-files -pasj*/
-ini_set("auto_detect_line_endings", true);
-//This doesn't work for some reason
-//if (isset($_SESSION['username'])) 
-//{
-//Upload File 
-if (isset($_POST['PMID']) && isset($_POST['First_author']) && isset($_POST['journal']) && isset($_POST['pub_year'])
-               && isset($_POST['title']) && isset($_POST['trait']) && ($_POST['submit'])) 
-{
-//extra loop to keep people from logging in in disabled css -pasj
-    if ( isset($_SESSION['username'])) 
-//loop to check if a file has been uploaded
-    {
-        if ( isset($_POST['filename'])) 
-        {
-	        //Import uploaded file to Database
-	        $handle = fopen($_FILES['filename']['tmp_name'], "r");
- 
-	        while (($data = fgetcsv($handle, 49, "\t")) !== FALSE) 
-	        {
-		        $import="INSERT into results (MarkerName,p,PMID) values('$data[0]','$data[1]','$data[2]')";
-		        mysql_query($import) or die(mysql_error());
-	        }
-            fclose($handle);
-            print "<p>Import done</p>";
-            //Add information to database
-	        $PMID = mysql_real_escape_string($_POST['PMID']);
-            $First_author = mysql_real_escape_string($_POST['First_author']);
-            $journal = mysql_real_escape_string($_POST['journal']);
-            $pub_year = mysql_real_escape_string($_POST['pub_year']);
-            $title = mysql_real_escape_string($_POST['title']);
-            $trait = mysql_real_escape_string($_POST['trait']);
-            if (!empty($PMID) && !empty($First_author) && !empty($journal) && !empty($pub_year) && !empty($title) 
-            && is_numeric($pub_year) && is_numeric($PMID)) 
-            	{
-            		$sql = "INSERT INTO Publications (PMID, First_author, journal, pub_year, title, trait) VALUES ('$PMID', '$First_author', '$journal', '$pub_year', '$title', '$trait')";
-            		mysql_query($sql);
-            		$_SESSION['success'] = "You've successfully uploaded your dataset. Now you can <a href=\"query.php\" > query </a> or upload another dataset.";
-            		header( 'Location: upload.php' ) ;
-            		return;
-        		}
-		  }  
-		        
-        else 
-        {
-            echo '<p style="color:red">YOU MUST UPLOAD A FILE!</p>';
-            return;
-        }
-    }
-    else 
-    {
-        echo '<p style="color:red">YOU MUST BE LOGGED IN!</p>';
-        return;
-    }
-}
-else 
-{
-    echo '<p style="color:red">Error: Valid publication information is required in all fields</p>';
-    //return;
-}
-?>
-
-
-
-
 <input size='50' type='file' name='filename'><br />
 
 </br>
