@@ -81,16 +81,16 @@ function checkPass(){
 	var confirmPassword = document.getElementById('confirmPassword');	
 	var message = document.getElementById('confirmMessage');
 	var goodColor = "#66cc66";
-	var badColor = "#ff6666";
+	var badColor = "red";
 	if (password.value == confirmPassword.value) {
 		confirmPassword.style.backgroundColor = goodColor;
 		message.style.color = goodColor;
-		message.innerHTML = "Passwords Match"
+		message.innerHTML = "Passwords match"
 		}
 	else {
 		confirmPassword.style.backgroundColor = badColor;
 		message.style.color = badColor;
-		message.innerHTML = "Passwords Don't Match!"
+		message.innerHTML = "Passwords don't match!"
 		}
 	}
 <!-- JAVASCRIPT FOR FORM VALIDATION -->
