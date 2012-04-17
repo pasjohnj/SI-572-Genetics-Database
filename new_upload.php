@@ -5,8 +5,6 @@
 
 require_once "db.php";
 session_start();
-
-<?php
 /*Necessary to ensure proper upload into the database of variously formatted csv
 files -pasj*/
 ini_set("auto_detect_line_endings", true);
@@ -70,7 +68,6 @@ else {
    header( 'Location: upload.php' ) ;
    return;
 }*/
-?>
 /*Still to add:
 -ability to strip away first line if it lists tab headings
 -reject a file if it's not properly formatted
