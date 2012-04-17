@@ -2,11 +2,13 @@
 require_once "db.php";
 session_start();
 
-if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['username'])) {
+if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['username'])  &&isset($_POST['name'])) {
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
+	$confirmPassword = mysql_real_escape_string($_POST['confirmPassword']);
 	$email = mysql_real_escape_string($_POST['email']);
-	$sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+	$name= mysql_real_escape_string($_POST['name']);
+	$sql = "INSERT INTO users (username, password, email, name) VALUES ('$username', '$password', '$email', '$name')";
 	mysql_query($sql);
 	$_SESSION['success'] = 'User Added';
 	$_SESSION['username'] = $row[0];
@@ -73,6 +75,24 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 	<div class ="g612">
 
 <script type="text/javascript">
+//Check Password
+function checkPass(){
+	var password = document.getElementById('password');
+	var confirmPassword = document.getElementById('confirmPassword');	
+	var message = document.getElementById('confirmMessage');
+	var goodColor = "#66cc66";
+	var badColor = "#ff6666";
+	if (password.value == confirmPassword.value) {
+		confirmPassword.style.backgroundColor = goodColor;
+		message.style.color = goodColor;
+		message.innerHTML = "Passwords Match"
+		}
+	else {
+		confirmPassword.style.backgroundColor = badColor;
+		message.style.color = badColor;
+		message.innerHTML = "Passwords Don't Match!"
+		}
+	}
 <!-- JAVASCRIPT FOR FORM VALIDATION -->
 function Validate()
 {
@@ -81,6 +101,7 @@ function Validate()
   document.getElementById("UserNameERR").innerHTML = "";
   document.getElementById("PasswordERR").innerHTML = "";
   document.getElementById("EmailERR").innerHTML = "";
+  document.getElementById("nameERR").innerHTML="";
 
   // Check for a name
   if (document.getElementById("username").value == "") {
@@ -90,6 +111,11 @@ function Validate()
   // Check for an address
   if (document.getElementById("password").value == "") {
     document.getElementById("PasswordERR").innerHTML = "Missing password";
+    IsValid = false;
+  }	
+    // Check for an address
+  if (document.getElementById("name").value == "") {
+    document.getElementById("nameERR").innerHTML = "Missing name";
     IsValid = false;
   }	
   // Check for a valid email address
@@ -133,7 +159,7 @@ function Validate()
 </tr>
 <tr>
 	<td>
-		<label>Password:</label>
+		<label for="password">Password:</label>
 	</td>
 	<td>
 		<input type="password" name="password" id="password"
@@ -142,6 +168,33 @@ function Validate()
 	</td>
 	<td >
 		<span class="error" id="PasswordERR" ></span>
+	</td>
+</tr>
+<tr>
+	<td>
+		<label for="confirmPassword">Confirm Password:</label>
+	</td>
+	<td>
+		<input type="password" name="confirmPassword" 
+		id="confirmPassword" onkeyup="checkPass(); return false;"
+		<?php echo 'value="' .htmlentities($_POST['confirmPassword']) .'"';
+		?>>
+	</td>
+	<td >
+		<span class="confirmMessage"" id="confirmMessage" ></span>
+	</td>
+</tr>
+<tr>
+	<td>
+		<label>Name: </label>
+	</td>
+	<td>
+		<input type="text" name="name" id="name"
+		<?php echo 'value="' .htmlentities($_POST['name']) .'"';
+		?>>
+	</td>
+	<td>
+		<span class="error" id="nameERR" ></span>
 	</td>
 </tr>
 <tr>
