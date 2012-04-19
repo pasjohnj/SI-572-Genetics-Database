@@ -77,14 +77,10 @@ session_start();
 					<p>
 					<span>Register </span>  
 					Click here to enter your information and become a <a href="register.php" > new user</a>.
-		<!--<input type="submit" value="Register"/>
-		<a href="index.html"> Cancel</a> -->
 					</p>
 					<p>
 					<span>Already registered? </span> 
 					Click here to <a href="login.php"> log in</a>. </br>
-		<!--<input type="submit" value="Login"/>
-		<a href="index.html">Cancel</a> -->
 					</p>
 				</div>
 				<div class="clear">&nbsp;</div>
