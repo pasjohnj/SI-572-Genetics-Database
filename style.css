@@ -147,7 +147,7 @@ h1 {
 display: none;
 }
 #name a {
-background-image: url('./images/cardioheading2.png');
+background-image: url('./images/cardioheading2.png'); /* This image was borrowed & altered from Gene Genie blog, http://my.biotechlife.net/2007/07/31/gene-genie-gets-a-logo/  */ 
 display: block;
 background-repeat: no-repeat;
 width: 400px;
