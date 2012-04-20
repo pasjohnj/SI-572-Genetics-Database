@@ -61,8 +61,8 @@ $filename = $row[0];
 <div class="main">
 	<div class="page">
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
-	<div class="g918">	
-	<div class="secondaryNav">
+		<div class="g918">	
+		<div class="secondaryNav">
 	<?php if ($_SESSION['username'])
 	{
 	echo "<p> Logged in as: ";
@@ -70,278 +70,265 @@ $filename = $row[0];
 	echo "&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"logout.php\">Logout</a></p>";
 	}
 	?>
-	</div>
-	<div class="top">
-	<div id ="name"><a href="index.php"><span>Home</span></a></div>
-	<h1> CardioGeniDB</h1>	
-	<div id="navcontainer">
-	<ul id="tabmenu">
-	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
-	</ul>
-	</div>
-	</div>
+		</div>
+		<div class="top">
+			<div id ="name"><a href="index.php"><span>Home</span></a></div>
+			<h1> CardioGeniDB</h1>	
+			<div id="navcontainer">
+				<ul id="tabmenu">
+					<li id ="tab1" > <a href="upload.php" >Upload</a></li>
+					<li id ="tab2"> <a href="query.php" class="active">Query </a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 <!-- END PAGE HEADER AND NAVIGATION -->
 
 <!-- BEGIN PAGE CONTENT  -->
 	<div class ="content">
 <!-- BEGIN STUFF ON THE LEFT-->
-	<div class = "g306">
-	<p>
-		<span>Query GWAS data </span>  
-		</br>Query for your variant of interest from the current database using the following fields.
-		First select a trait, and then fill in one or more of the following fields to narrow your search to a single genetic variant.
-	</p><p>
-	<span>Example query: </span><br>
-	rs13107325 is a SNP in the gene SLC39A8 on chromosome 4. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07). 
-	</p>
-	<p>
-	You may also query for your genomic region of interest by using a range of hg18 or hg19 positions.
-	<br>Example: The hg18 genomic range of positions 103406732 to 103408732 contains rs13107325 on chromosome 4.</p>
-	<p> Check out the genomic region containing your genetic variant of interest by choosing a gene from the drop-down menu. </p>
-	<div class="clear">&nbsp;</div>
-	</div>
+		<div class = "g306">
+		<p>
+			<span>Query GWAS data </span>  
+			</br>Query for your variant of interest from the current database using the following fields.
+			First select a trait, and then fill in one or more of the following fields to narrow your search to a single genetic variant.
+		</p><p>
+			<span>Example query: </span><br>
+			rs13107325 is a SNP in the gene SLC39A8 on chromosome 4. Querying this SNP for different traits reveals that it has pleitropic effects for BMI (p=1.37e-07) and BP (p=2.57e-07). 
+		</p>
+		<p>
+			You may also query for your genomic region of interest by using a range of hg18 or hg19 positions.
+			<br>Example: The hg18 genomic range of positions 103406732 to 103408732 contains rs13107325 on chromosome 4.</p>
+		<p> Check out the genomic region containing your genetic variant of interest by choosing a gene from the drop-down menu. </p>
+		<div class="clear">&nbsp;</div>
+		</div>
 <!-- END STUFF ON THE LEFT-->
 
 <!-- BEGIN STUFF ON RIGHT-->
 
-	<div class ="g612">
-<fieldset>
-<legend>Select a single variant to query</legend>
-<br></br>
-<form method="POST">
-<table class="form_table">
-<tr>
-	<td>
-		<label>Trait:</label>
-	</td>
-	<td>
-		<select name="trait">
-		<option value="BMI">BMI</option>
-		<option value="BP">BP</option>
-		<option value="Fasting Glucose">Fasting Glucose</option>
-		<option value="Fasting Proinsulin">Fasting Proinsulin</option>
-		</select> 
-	</td>
-	<td >
-	</td>
+		<div class ="g612">
+<!-- SINGLE VARIANT QUERY FORM -->
+		<fieldset>
+			<legend>Select a single variant to query</legend>
+			<br></br>
+			<form method="POST">
+			<table class="form_table">
+			<tr>
+				<td>
+					<label>Trait:</label>
+				</td>
+				<td>
+					<select name="trait">
+					<option value="BMI">BMI</option>
+					<option value="BP">BP</option>
+					<option value="Fasting Glucose">Fasting Glucose</option>
+					<option value="Fasting Proinsulin">Fasting Proinsulin</option>
+					</select> 
+				</td>
+				<td >
+				</td>
+	
+			</tr>
+			<tr>
+				<td>
+					<label>MarkerName(rsID):</label>
+				</td>
+				<td>
+					<input type="text" 
+				       name="MarkerName" 
+				       value="<?php echo htmlentities($_POST['MarkerName']);?>" >
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Position (hg18):</label>
+				</td>
+				<td>
+					<input type="text" name="pos_hg18"
+					value= "<?php echo htmlentities($_POST['pos_hg18']);?>" >
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Position (hg19):</label>
+				</td>
+				<td>
+					<input type="text" name="pos_hg19"
+					value= "<?php echo htmlentities($_POST['pos_hg19']);?>" >
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>	
+					<label>Chromosome:</label>
+				</td>
+				<td>
+					<select name="chr">
+					<option value="chr">chr</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					</select><span class="error">*</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>		
+				</td>
+				<td><span class="error">*Note: Selecting chromosome will output all SNPs on that chromosome.
+				This query may take several minutes.</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			</table>
+			<div class="buttons">
+			<input type="submit" value="Submit" name="Submit_Query1">
+			<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
+			</div>
+			</form>
+		</fieldset>
+<!-- GENOMIC RANGE QUERY FORM --> 
+		<fieldset>
+		<legend>Select a genomic range to query</legend>
+		<br></br>
+		<form method="POST">
+			<table class="form_table">
+			<tr>
+				<td><label>Trait:</label>
+				</td>
+				<td>
+				<select name="trait">
+				<option value="BMI">BMI</option>
+				<option value="BP">BP</option>
+				<option value="Fasting Glucose">Fasting Glucose</option>
+				<option value="Fasting Proinsulin">Fasting Proinsulin</option>
+				</select>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>	<label>Position (hg18) Range:</label>
+				</td>
+				<td>
+					<input type="text" name="pos_hg18_2" value= "<?php echo htmlentities($_POST['pos_hg18_2']);?>" > 
+					to
+					<input type="text" name="pos_hg18_3" value= "<?php echo htmlentities($_POST['pos_hg18_3']);?>"> 
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<label>Position (hg19) Range:</label>
+				</td>
+				<td>
+					<input type="text" name="pos_hg19_2" value= "<?php echo htmlentities($_POST['pos_hg19_2']);?>" > 
+					to
+					<input type="text" name="pos_hg19_3" value= "<?php echo htmlentities($_POST['pos_hg19_3']);?>"> 
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Chromosome:</label>
+			</td>
+			<td>
+				<select name="chr">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				</select>
+			</td>
+			<td>
+			</td>
+		</tr>
+		</table>
+		<div class="buttons"> <input type="submit" value="Submit" name="Submit_Query2">
+			<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
+		</div>
 
-</tr>
-<tr>
-	<td>
-		<label>MarkerName(rsID):</label>
-	</td>
-	<td>
-		<input type="text" 
-	       name="MarkerName" 
-	       value="<?php echo htmlentities($_POST['MarkerName']);?>" >
-	</td>
-	<td>
-	</td>
-</tr>
-<tr>
-	<td>
-		<label>Position (hg18):</label>
-	</td>
-	<td>
-		<input type="text" name="pos_hg18"
-		value= "<?php echo htmlentities($_POST['pos_hg18']);?>" >
-	</td>
-		<td>
-	</td>
-</tr>
-<tr>
-	<td>
-		<label>Position (hg19):</label>
-	</td>
-	<td>
-		<input type="text" name="pos_hg19"
-		value= "<?php echo htmlentities($_POST['pos_hg19']);?>" >
-	</td>
-		<td>
-	</td>
-</tr>
-<tr>
-	<td>	
-		<label>Chromosome:</label>
-		
-	</td>
-	<td>
-		<select name="chr">
-		<option value="chr">chr</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-		<option value="15">15</option>
-		<option value="16">16</option>
-		<option value="17">17</option>
-		<option value="18">18</option>
-		<option value="19">19</option>
-		<option value="20">20</option>
-		<option value="21">21</option>
-		<option value="22">22</option>
-		</select><span class="error">*</span>
-		
-	</td>
-		<td>
-	</td>
-</tr>
-<tr>
-	<td>		
-	</td>
-	<td><span class="error">*Note: Selecting chromosome will output all SNPs on that chromosome.
-		This query may take several minutes.</span>
-	</td>
-		<td>
-	</td>
-</tr>
-</table>
-<div class="buttons">
-<input type="submit" value="Submit" name="Submit_Query1">
-<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
-</div>
-</form>
-</fieldset>
-
-<fieldset>
-<legend>Select a genomic range to query</legend>
-<br></br>
-<form method="POST">
-<table class="form_table">
-<tr>
-<td>
-	<label>Trait:</label>
-</td>
-<td>
-	<select name="trait">
-	<option value="BMI">BMI</option>
-	<option value="BP">BP</option>
-	<option value="Fasting Glucose">Fasting Glucose</option>
-	<option value="Fasting Proinsulin">Fasting Proinsulin</option>
-	</select>
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-	<label>Position (hg18) Range:</label>
-</td>
-<td>
-	<input type="text" 
-	name="pos_hg18_2"
-	value= "<?php echo htmlentities($_POST['pos_hg18_2']);?>" > 
-to
-	<input type="text" 
-	name="pos_hg18_3"
-	value= "<?php echo htmlentities($_POST['pos_hg18_3']);?>"> 
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-	<label>Position (hg19) Range:</label>
-</td>
-<td>
-	<input type="text" 
-	name="pos_hg19_2"
-	value= "<?php echo htmlentities($_POST['pos_hg19_2']);?>" > 
-to
-	<input type="text" 
-	name="pos_hg19_3"
-	value= "<?php echo htmlentities($_POST['pos_hg19_3']);?>"> 
-</td>
-<td>
-</td>
-</tr>
-<tr>
-<td><label>Chromosome:</label>
-</td>
-<td>
-<select name="chr">
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
-	<option value="11">11</option>
-	<option value="12">12</option>
-	<option value="13">13</option>
-	<option value="14">14</option>
-	<option value="15">15</option>
-	<option value="16">16</option>
-	<option value="17">17</option>
-	<option value="18">18</option>
-	<option value="19">19</option>
-	<option value="20">20</option>
-	<option value="21">21</option>
-	<option value="22">22</option>
-</select>
-</td>
-<td>
-</td>
-</tr>
-</table>
-<div class="buttons">
-<input type="submit" value="Submit" name="Submit_Query2">
-<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
-</div>
-
-</form>
-</fieldset>
-<fieldset>
-<legend>Select a gene for a zoomed-in view of the genomic region</legend>
-<br></br>
-<form method="POST">
-<table class="form_table">
-<tr>
-	<td>
-		<label>Gene:</label>
-	</td>
-	<td>
-		<select name="gene">
-		<option value="ATG13">ATG13</option>
-		<option value="APOA5">APOA5</option>
-		<option value="CETP">CETP</option>
-		<option value="MED1">MED1</option>
-		<option value="SLC39A8">SLC39A8</option>
-		</select> 
-	</td>
-<td>
-</td>
-</tr>
-</table>
-<div class="buttons">
-<input type="submit" value="submit" name="submit">
-<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " /> 
-</form>
-<br></br><p>*Plots were made using <a href="http://csg.sph.umich.edu/locuszoom/">LocusZoom</a></p>
-</fieldset>
-</div >
-</div>
+		</form>
+		</fieldset>
+<!-- IMAGE QUERY FORM --> 	
+		<fieldset>
+		<legend>Select a gene for a zoomed-in view of the genomic region</legend>
+		<br></br>
+		<form method="POST">
+			<table class="form_table">
+			<tr>
+				<td><label>Gene:</label>
+				</td>
+				<td><select name="gene">
+					<option value="ATG13">ATG13</option>
+					<option value="APOA5">APOA5</option>
+					<option value="CETP">CETP</option>
+					<option value="MED1">MED1</option>
+					<option value="SLC39A8">SLC39A8</option>
+					</select> 
+				</td>
+				<td>
+				</td>
+			</tr>
+			</table>
+			<div class="buttons"> <input type="submit" value="submit" name="submit">
+			<input type="button" name="Cancel" value="Cancel" onclick="window.location = 'query.php' " >
+			</div>
+		</form>
+		<br></br><p>*Plots were made using <a href="http://csg.sph.umich.edu/locuszoom/">LocusZoom</a></p>
+		</fieldset>
+		</div >
+	</div>
 
 	<div class="clear">&nbsp;</div>
 
-<div class='g918'>		
-	
+	<div class='g918'>		
+<!-- RESULTS TABLE --> 	
 <?php
 if (  isset($_POST['Submit_Query1'])) {
 	$markername = mysql_real_escape_string($_POST['MarkerName']);

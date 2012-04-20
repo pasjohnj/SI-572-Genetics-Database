@@ -25,12 +25,7 @@ if (  isset($_POST['username']) && isset($_POST['password']) && isset($_POST['us
 <!-- main style sheet -->
 <link href = "style.css" media= "screen" rel="stylesheet" />
 
-<!-- some javascript we probably won't need -->
-<script language="JavaScript" type="text/javascript" src="ahahLib.js"></script> 
-<script language="JavaScript" type="text/javascript"> 
-function makeactive(tab) { document.getElementById("tab1").className = ""; document.getElementById("tab2").className = ""; document.getElementById("tab3").className = ""; document.getElementById("tab"+tab).className = "active"; 
-callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+'. Wait...', 'Error'); } 
-</script>
+
 <title>CardioGeni</title>
 </head>
 
@@ -38,41 +33,37 @@ callAHAH('content.php?content= '+tab, 'content', 'getting content for tab '+tab+
 <div class="main">
 	<div class="page">
 <!-- BEGIN PAGE HEADER AND NAVIGATION -->
-	<div class="g918">	
-	<div class="top">
-	<div id ="name"><a href="index.php"><span>Home</span></a></div>
-	<h1> CardioGeniDB</h1>	
-	<div id="navcontainer">
-	<ul id="tabmenu">
-	<li id ="tab1" > <a href="upload.php" >Upload</a></li>
-	<li id ="tab2"> <a href="query.php" >Query </a></li>
-
-	</ul>
-	</div>
-	</div>
-	</div>
+		<div class="g918">	
+			<div class="top">
+				<div id ="name"><a href="index.php"><span>Home</span></a></div>
+					<h1> CardioGeniDB</h1>	
+					<div id="navcontainer">
+						<ul id="tabmenu">
+							<li id ="tab1" > <a href="upload.php" >Upload</a></li>
+							<li id ="tab2"> <a href="query.php" >Query </a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 <!-- END PAGE HEADER AND NAVIGATION -->
 
 <!-- BEGIN PAGE CONTENT  -->
-	<div class ="content">
+			<div class ="content">
 
 <!-- BEGIN STUFF ON THE LEFT-->
-	<div class = "g306">
-	<p>
-		<span>Register!</span>  
-		
-		Enter your information on this form to become a new user.
-	</p>
-	<p>
-		<span>Already registered? </span> 
-		Click here to <a href="login.php"> log in</a>.
-	</p>
-	<div class="clear">&nbsp;</div>
-	</div>
+				<div class = "g306">
+					<p><span>Register!</span>  
+					Enter your information on this form to become a new user.
+					</p>
+					<p><span>Already registered? </span> 
+					Click here to <a href="login.php"> log in</a>.
+					</p>
+					<div class="clear">&nbsp;</div>
+				</div>
 <!-- END STUFF ON THE LEFT-->
 
 <!-- ADD USER STUFF ON RIGHT-->
-	<div class ="g612">
+				<div class ="g612">
 
 <script type="text/javascript">
 //Check Password
@@ -81,16 +72,16 @@ function checkPass(){
 	var confirmPassword = document.getElementById('confirmPassword');	
 	var message = document.getElementById('confirmMessage');
 	var goodColor = "#66cc66";
-	var badColor = "#ff6666";
+	var badColor = "red";
 	if (password.value == confirmPassword.value) {
 		confirmPassword.style.backgroundColor = goodColor;
 		message.style.color = goodColor;
-		message.innerHTML = "Passwords Match"
+		message.innerHTML = "Passwords match"
 		}
 	else {
 		confirmPassword.style.backgroundColor = badColor;
 		message.style.color = badColor;
-		message.innerHTML = "Passwords Don't Match!"
+		message.innerHTML = "Passwords don't match!"
 		}
 	}
 <!-- JAVASCRIPT FOR FORM VALIDATION -->
@@ -137,107 +128,80 @@ function Validate()
 
 </script>
 
-<fieldset>
-<legend>Add a new user account</legend>
-
-
-<form name="MyForm" method="post" onsubmit="return Validate()">
-<table class="form_table">
-<tr>
-	<td>
-		<label>Username:</label>
-	</td>
-	<td>
-		<input type="text" name="username" id="username" 
-		<?php 
-		echo 'value="' .htmlentities($_POST['username']) .'"';
-		?>>
-	</td>
-	<td>
-		<span class="error" id="UserNameERR" ></span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<label for="password">Password:</label>
-	</td>
-	<td>
-		<input type="password" name="password" id="password"
-		<?php echo 'value="' .htmlentities($_POST['password']) .'"';
-		?>>
-	</td>
-	<td >
-		<span class="error" id="PasswordERR" ></span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<label for="confirmPassword">Confirm Password:</label>
-	</td>
-	<td>
-		<input type="password" name="confirmPassword" 
-		id="confirmPassword" onkeyup="checkPass(); return false;"
-		<?php echo 'value="' .htmlentities($_POST['confirmPassword']) .'"';
-		?>>
-	</td>
-	<td >
-		<span class="confirmMessage"" id="confirmMessage" ></span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<label>Name: </label>
-	</td>
-	<td>
-		<input type="text" name="name" id="name"
-		<?php echo 'value="' .htmlentities($_POST['name']) .'"';
-		?>>
-	</td>
-	<td>
-		<span class="error" id="nameERR" ></span>
-	</td>
-</tr>
-<tr>
-	<td>
-		<label>Email: </label>
-	</td>
-	<td>
-		<input type="text" name="email" id="email"
-		<?php echo 'value="' .htmlentities($_POST['email']) .'"';
-		?>>
-	</td>
-	<td>
-		<span class="error" id="EmailERR" ></span>
-	</td>
-</tr>
-</table>
-<div class="buttons">	
-	<input type="submit" value="Submit"/>
-<input type="reset" name="Cancel" value="Cancel" /> 
-</div>
+			<fieldset><legend>Add a new user account</legend>
+			<form name="MyForm" method="post" onsubmit="return Validate()">
+				<table class="form_table">
+					<tr>
+						<td><label>Username:</label>
+						</td>
+						<td><input type="text" name="username" id="username" 
+						<?php 
+						echo 'value="' .htmlentities($_POST['username']) .'"';
+						?>>
+						</td>
+						<td><span class="error" id="UserNameERR" ></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="password">Password:</label>
+						</td>
+						<td><input type="password" name="password" id="password"
+						<?php echo 'value="' .htmlentities($_POST['password']) .'"';
+						?>>
+						</td>
+						<td ><span class="error" id="PasswordERR" ></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="confirmPassword">Confirm Password:</label>
+						</td>
+						<td> <input type="password" name="confirmPassword" id="confirmPassword" onkeyup="checkPass(); return false;"
+						<?php echo 'value="' .htmlentities($_POST['confirmPassword']) .'"';
+						?>>
+						</td>
+						<td ><span class="error"" id="confirmMessage" ></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label>Name: </label>
+						</td>
+						<td><input type="text" name="name" id="name"
+						<?php echo 'value="' .htmlentities($_POST['name']) .'"';
+						?>>
+						</td>
+						<td><span class="error" id="nameERR" ></span>
+						</td>
+					</tr>
+					<tr>
+						<td><label>Email: </label>
+						</td>
+						<td> <input type="text" name="email" id="email"
+						<?php echo 'value="' .htmlentities($_POST['email']) .'"';
+						?>>
+						</td>
+						<td><span class="error" id="EmailERR" ></span>
+						</td>
+					</tr>
+				</table>
+				<div class="buttons">	<input type="submit" value="Submit"/>
+					<input type="reset" name="Cancel" value="Cancel" /> 
+				</div>
 <!--for later: <span id="EmailERR" style="color:red"></span> -->
-</form>
-</fieldset>
+			</form>
+			</fieldset>
 
-</div >
-	<div class="clear">&nbsp;</div>
+		</div >
+		<div class="clear">&nbsp;</div>
 
 
 <!-- BEGIN BOTTOM SECTION-->
-	<div class="g918">
-	<div id="line"></div>
-	</div>	
-
-
-
-	<div class="clear">&nbsp;</div>
-	
-
+		<div class="g918">
+			<div id="line"></div>
+		</div>	
+		<div class="clear">&nbsp;</div>
 	</div>
 <!-- END BOTTOM SECTION-->
-
-	
-	</div> 
+</div> 
 <!-- end page content -->
 
 			
