@@ -125,6 +125,8 @@ unset($_SESSION['success']);
 
 				<p> Data on glycaemic traits have been contributed by MAGIC investigators and have been downloaded from www.magicinvestigators.org 
 				</p>
+				<p>The CardioGeni logo was borrowed and adapted from the Gene Geni blog for academic use only. (http://my.biotechlife.net/2007/07/31/gene-genie-gets-a-logo/) 
+				</p>
 				</fieldset>
 				<div id="line"></div>
 				<p> 
